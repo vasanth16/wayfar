@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Wayfar.xcodeproj">
+      location = "group:/Users/vasanthrajasekaran/Downloads/background.JPG">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

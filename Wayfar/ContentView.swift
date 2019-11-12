@@ -8,28 +8,21 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
-    var body: some View {
-        HStack {
-          // Target color block
-          VStack {
-            Rectangle()
-            Text("Match this color")
-          }
-          // Guess color block
-          VStack {
-            Rectangle()
-            HStack {
-              Text("R: xxx")
-              Text("G: xxx")
-              Text("B: xxx")
+    @State var inte = false
+    var body: some View{
+        return Group {
+            if inte {
+                InterestsView()
+            }else{
+                StartPageView(next: $inte)
             }
-          }
         }
-
-
     }
 }
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
