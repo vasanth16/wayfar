@@ -10,6 +10,7 @@ import SwiftUI
 
 struct StartPageView: View {
        var body: some View {
+        NavigationView{
         GeometryReader{ geometry in
             ZStack{
                 Image("bg")
@@ -32,6 +33,7 @@ struct StartPageView: View {
                 }
             }
         }
+    }
     }
 }
 

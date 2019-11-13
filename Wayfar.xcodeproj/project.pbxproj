@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,9 +16,12 @@
 		B72AC593237B83E30062EBF5 /* YelpRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72AC592237B83E30062EBF5 /* YelpRequests.swift */; };
 		B7FADEB8237A7F0D00C65540 /* InterestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FADEB7237A7F0D00C65540 /* InterestsView.swift */; };
 		B7FADEBA237A807C00C65540 /* StartPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FADEB9237A807C00C65540 /* StartPageView.swift */; };
+		BD790DA02A62C1D7DFF30CD7 /* Pods_Wayfar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC1A6FD01E5FB869DFF0936 /* Pods_Wayfar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		062AC96CE83FFEE4376DADD9 /* Pods-Wayfar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfar.release.xcconfig"; path = "Target Support Files/Pods-Wayfar/Pods-Wayfar.release.xcconfig"; sourceTree = "<group>"; };
+		36AB7CCCE5D6C60D90446A90 /* Pods-Wayfar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wayfar.debug.xcconfig"; path = "Target Support Files/Pods-Wayfar/Pods-Wayfar.debug.xcconfig"; sourceTree = "<group>"; };
 		B70C5FE12376477C005FC420 /* Wayfar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wayfar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B70C5FE42376477C005FC420 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B70C5FE62376477C005FC420 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -30,6 +33,7 @@
 		B72AC592237B83E30062EBF5 /* YelpRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpRequests.swift; sourceTree = "<group>"; };
 		B7FADEB7237A7F0D00C65540 /* InterestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestsView.swift; sourceTree = "<group>"; };
 		B7FADEB9237A807C00C65540 /* StartPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageView.swift; sourceTree = "<group>"; };
+		DDC1A6FD01E5FB869DFF0936 /* Pods_Wayfar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayfar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +41,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD790DA02A62C1D7DFF30CD7 /* Pods_Wayfar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B49162A44A4A6CB906E143D7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				36AB7CCCE5D6C60D90446A90 /* Pods-Wayfar.debug.xcconfig */,
+				062AC96CE83FFEE4376DADD9 /* Pods-Wayfar.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B70C5FD82376477C005FC420 = {
 			isa = PBXGroup;
 			children = (
 				B70C5FE32376477C005FC420 /* Wayfar */,
 				B70C5FE22376477C005FC420 /* Products */,
+				B49162A44A4A6CB906E143D7 /* Pods */,
+				B8A019B9BD94D8E0827D1EE4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,11 +83,11 @@
 				B70C5FE82376477C005FC420 /* ContentView.swift */,
 				B7FADEB7237A7F0D00C65540 /* InterestsView.swift */,
 				B7FADEB9237A807C00C65540 /* StartPageView.swift */,
+				B72AC592237B83E30062EBF5 /* YelpRequests.swift */,
 				B70C5FEA23764786005FC420 /* Assets.xcassets */,
 				B70C5FEF23764786005FC420 /* LaunchScreen.storyboard */,
 				B70C5FF223764786005FC420 /* Info.plist */,
 				B70C5FEC23764786005FC420 /* Preview Content */,
-				B72AC592237B83E30062EBF5 /* YelpRequests.swift */,
 			);
 			path = Wayfar;
 			sourceTree = "<group>";
@@ -84,6 +100,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B8A019B9BD94D8E0827D1EE4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDC1A6FD01E5FB869DFF0936 /* Pods_Wayfar.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -91,9 +115,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B70C5FF523764786005FC420 /* Build configuration list for PBXNativeTarget "Wayfar" */;
 			buildPhases = (
+				E6FB9D81FFE0B912E13B3DBE /* [CP] Check Pods Manifest.lock */,
 				B70C5FDD2376477C005FC420 /* Sources */,
 				B70C5FDE2376477C005FC420 /* Frameworks */,
 				B70C5FDF2376477C005FC420 /* Resources */,
+				D5B3A5BF6CB89DAF25F5302C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,6 +175,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D5B3A5BF6CB89DAF25F5302C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wayfar/Pods-Wayfar-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Wayfar/Pods-Wayfar-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Wayfar/Pods-Wayfar-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6FB9D81FFE0B912E13B3DBE /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Wayfar-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B70C5FDD2376477C005FC420 /* Sources */ = {
@@ -294,6 +362,7 @@
 		};
 		B70C5FF623764786005FC420 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36AB7CCCE5D6C60D90446A90 /* Pods-Wayfar.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -314,6 +383,7 @@
 		};
 		B70C5FF723764786005FC420 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 062AC96CE83FFEE4376DADD9 /* Pods-Wayfar.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

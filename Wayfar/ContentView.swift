@@ -7,10 +7,10 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 
 struct ContentView: View {
-    @State var inte = false
     var body: some View{
             StartPageView()
             }
