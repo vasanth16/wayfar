@@ -22,8 +22,8 @@ import CDYelpFusionKit
 //    }
 //
 
-let id = "9E7QeY2veNmPTWtEiwlZxw"
-let apikey = "jyeNOVKa449cPnMn7EASMGbfGXNaipPDebuUviXP1PH1PPJoPE4GNmrfviz_JyOLhLQuM-rtDIsUVFPHJKH5IZy1_dHjHr1cyo5DwWIi9g7dji5pN2BlkSPlGUXLXXYx"
+let id = ""
+let apikey = ""
     let locationManager = CLLocationManager()
     let yelpAPIClient = CDYelpAPIClient(apiKey: apikey)
     func getBusiness(interests: [String]){
