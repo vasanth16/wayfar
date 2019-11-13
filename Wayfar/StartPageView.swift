@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct StartPageView: View {
-    @Binding var next: Bool
        var body: some View {
         GeometryReader{ geometry in
             ZStack{
@@ -22,16 +21,13 @@ struct StartPageView: View {
                         .font(.largeTitle)
                         .padding()
                         .colorInvert()
-                    Button(action: {
-                        print(self.next)
-                        self.next = true
-                       }) {
-                       Text("Get Started")
-                           .font(.headline)
-                           .padding()
-                        .border(Color.white, width: 1)
-                        .accentColor(.white)
-                        
+                    Button(action: {}) {
+                        NavigationLink(destination: InterestsView()) {
+                        Text("Get Started")
+                            .font(.headline)
+                            .padding().border(Color.white, width: 1)
+                            .accentColor(.white)
+                        }
                        }
                 }
             }
@@ -42,6 +38,6 @@ struct StartPageView: View {
 struct StartPageView_Previews: PreviewProvider {
     @State static var idk = false
     static var previews: some View {
-        StartPageView(next: $idk)
+        StartPageView()
     }
 }

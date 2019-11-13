@@ -13,6 +13,7 @@
 		B70C5FEB23764786005FC420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B70C5FEA23764786005FC420 /* Assets.xcassets */; };
 		B70C5FEE23764786005FC420 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B70C5FED23764786005FC420 /* Preview Assets.xcassets */; };
 		B70C5FF123764786005FC420 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B70C5FEF23764786005FC420 /* LaunchScreen.storyboard */; };
+		B72AC593237B83E30062EBF5 /* YelpRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72AC592237B83E30062EBF5 /* YelpRequests.swift */; };
 		B7FADEB8237A7F0D00C65540 /* InterestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FADEB7237A7F0D00C65540 /* InterestsView.swift */; };
 		B7FADEBA237A807C00C65540 /* StartPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FADEB9237A807C00C65540 /* StartPageView.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		B70C5FED23764786005FC420 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B70C5FF023764786005FC420 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B70C5FF223764786005FC420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B72AC592237B83E30062EBF5 /* YelpRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpRequests.swift; sourceTree = "<group>"; };
 		B7FADEB7237A7F0D00C65540 /* InterestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestsView.swift; sourceTree = "<group>"; };
 		B7FADEB9237A807C00C65540 /* StartPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +71,7 @@
 				B70C5FEF23764786005FC420 /* LaunchScreen.storyboard */,
 				B70C5FF223764786005FC420 /* Info.plist */,
 				B70C5FEC23764786005FC420 /* Preview Content */,
+				B72AC592237B83E30062EBF5 /* YelpRequests.swift */,
 			);
 			path = Wayfar;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				B7FADEBA237A807C00C65540 /* StartPageView.swift in Sources */,
 				B7FADEB8237A7F0D00C65540 /* InterestsView.swift in Sources */,
 				B70C5FE92376477C005FC420 /* ContentView.swift in Sources */,
+				B72AC593237B83E30062EBF5 /* YelpRequests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

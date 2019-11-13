@@ -12,16 +12,9 @@ import SwiftUI
 struct ContentView: View {
     @State var inte = false
     var body: some View{
-        return Group {
-            if inte {
-                InterestsView()
-            }else{
-                StartPageView(next: $inte)
+            StartPageView()
             }
         }
-    }
-}
-
 
 
 struct ContentView_Previews: PreviewProvider {
