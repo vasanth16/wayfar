@@ -11,23 +11,12 @@ import CoreLocation
 
 import CDYelpFusionKit
 
-//public class YelpRequests{
-//    let id: String
-//    let apikey: String
-//    let yelpAPIClient: CDYelpAPIClient
-//    init(){
-//        self.id = "9E7QeY2veNmPTWtEiwlZxw"
-//        self.apikey = "jyeNOVKa449cPnMn7EASMGbfGXNaipPDebuUviXP1PH1PPJoPE4GNmrfviz_JyOLhLQuM-rtDIsUVFPHJKH5IZy1_dHjHr1cyo5DwWIi9g7dji5pN2BlkSPlGUXLXXYx"
-//        self.yelpAPIClient = CDYelpAPIClient(apiKey: self.apikey)
-//    }
-//
-
 
 
 class yelpRequests {
-    let id = ""
+    let id = "9E7QeY2veNmPTWtEiwlZxw"
     let locationManager = CLLocationManager()
-    let yelpAPIClient = CDYelpAPIClient(apiKey:" )
+    let yelpAPIClient = CDYelpAPIClient(apiKey:"jyeNOVKa449cPnMn7EASMGbfGXNaipPDebuUviXP1PH1PPJoPE4GNmrfviz_JyOLhLQuM-rtDIsUVFPHJKH5IZy1_dHjHr1cyo5DwWIi9g7dji5pN2BlkSPlGUXLXXYx" )
     var busis: [CDYelpFusionKit.CDYelpBusiness] = []
 
 
