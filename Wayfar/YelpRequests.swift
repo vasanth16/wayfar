@@ -11,9 +11,9 @@ import CoreLocation
 import CDYelpFusionKit
 
 class yelpRequests {
-    let id = "9E7QeY2veNmPTWtEiwlZxw"
+    let id = ""
     let locationManager = CLLocationManager() // location manager to manage user's location
-    let yelpAPIClient = CDYelpAPIClient(apiKey:"jyeNOVKa449cPnMn7EASMGbfGXNaipPDebuUviXP1PH1PPJoPE4GNmrfviz_JyOLhLQuM-rtDIsUVFPHJKH5IZy1_dHjHr1cyo5DwWIi9g7dji5pN2BlkSPlGUXLXXYx" ) // Yelp API Key
+    let yelpAPIClient = CDYelpAPIClient(apiKey:"" ) // Yelp API Key
     var busis: [CDYelpFusionKit.CDYelpBusiness] = [] // Array of businesses to be exported to different views
 
     func getBusiness(interests: [String]) -> Void{ // function to get businesses near location based on type
