@@ -22,14 +22,12 @@ struct StartPageView: View {
                         .font(.largeTitle)
                         .padding()
                         .colorInvert()
-                    Button(action: {}) {
-                        NavigationLink(destination: InterestsView()) {
-                        Text("Get Started")
-                            .font(.headline)
-                            .padding().border(Color.white, width: 1)
-                            .accentColor(.white)
-                        }
-                       }
+                    NavigationLink(destination: InterestsView()) {
+                    Text("Get Started")
+                        .font(.headline)
+                        .padding().border(Color.white, width: 1)
+                        .accentColor(.white)
+                    }
                 }
             }
         }
@@ -37,8 +35,8 @@ struct StartPageView: View {
     }
 }
 
+
 struct StartPageView_Previews: PreviewProvider {
-    @State static var idk = false
     static var previews: some View {
         StartPageView()
     }
