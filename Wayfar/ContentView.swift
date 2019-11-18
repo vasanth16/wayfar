@@ -5,6 +5,8 @@
 //  Created by Vasanth Rajasekaran on 11/8/19.
 //  Copyright © 2019 Vasanth. All rights reserved.
 //
+// This is the default View that drives the application
+// calls the Startpage
 
 import SwiftUI
 
