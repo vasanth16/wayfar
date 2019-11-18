@@ -14,9 +14,9 @@ import CDYelpFusionKit
 
 
 class yelpRequests {
-    let id = "9E7QeY2veNmPTWtEiwlZxw"
+    let id = ""
     let locationManager = CLLocationManager()
-    let yelpAPIClient = CDYelpAPIClient(apiKey:"jyeNOVKa449cPnMn7EASMGbfGXNaipPDebuUviXP1PH1PPJoPE4GNmrfviz_JyOLhLQuM-rtDIsUVFPHJKH5IZy1_dHjHr1cyo5DwWIi9g7dji5pN2BlkSPlGUXLXXYx" )
+    let yelpAPIClient = CDYelpAPIClient(apiKey:"" )
     var busis: [CDYelpFusionKit.CDYelpBusiness] = []
 
 
