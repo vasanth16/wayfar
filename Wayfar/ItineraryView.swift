@@ -20,14 +20,18 @@ struct ItineraryView: View {
 func parseBusiness(bus: CDYelpBusiness) -> [String] { // parses business object that is sent in and returns an array with the name and its type
     let busName = bus.name
     let busType = bus.categories![0].title!
-    return [busName!, busType]
+    let busNum = bus.displayPhone
+    let busD:String = String(format: "%f", bus.distance!)
+    return [busName!, busType, busNum!, busD]
 }
 struct PlaceView: View { // Custom view to display businesses
     var sel: CDYelpBusiness // takes in a business object
     var body: some View{
-        VStack{
-            Text(parseBusiness(bus: self.sel)[0]) // displays name
-            Text(parseBusiness(bus: self.sel)[1].replacingOccurrences(of: " ", with: "")) // displays the type
+        VStack(alignment: .leading){
+            Text(parseBusiness(bus: self.sel)[0]).bold() // displays name
+            Text(parseBusiness(bus: self.sel)[1].replacingOccurrences(of: " ", with: "")).italic() // displays the type
+            Text(parseBusiness(bus: self.sel)[2])
+            //Text(parseBusiness(bus: self.sel)[3])
         }
         }
     }
