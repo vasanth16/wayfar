@@ -11,17 +11,17 @@ import CoreLocation
 import CDYelpFusionKit
 
 class yelpRequests {
-    let id = ""
+    let id = "9E7QeY2veNmPTWtEiwlZxw"
     let locationManager = CLLocationManager() // location manager to manage user's location
-    let yelpAPIClient = CDYelpAPIClient(apiKey:"" ) // Yelp API Key
+    let yelpAPIClient = CDYelpAPIClient(apiKey:"jyeNOVKa449cPnMn7EASMGbfGXNaipPDebuUviXP1PH1PPJoPE4GNmrfviz_JyOLhLQuM-rtDIsUVFPHJKH5IZy1_dHjHr1cyo5DwWIi9g7dji5pN2BlkSPlGUXLXXYx" ) // Yelp API Key
     var busis: [CDYelpFusionKit.CDYelpBusiness] = [] // Array of businesses to be exported to different views
 
     func getBusiness(interests: [String]) -> Void{ // function to get businesses near location based on type
         locationManager.requestAlwaysAuthorization() // Gets authorization to use the Devices location
         locationManager.requestWhenInUseAuthorization()
-        var categories: [CDYelpBusinessCategoryFilter] = [] // List of categories
+        var categories: [CDYelpCategoryAlias] = [] // List of categories
         for interest in interests{ // creates category objects that are then appended categories array to be sent into the api call
-            categories.append( CDYelpBusinessCategoryFilter.init(rawValue: interest.lowercased().replacingOccurrences(of: " ", with: "")) ?? CDYelpBusinessCategoryFilter.artsAndEntertainment )
+            categories.append( CDYelpCategoryAlias.init(rawValue: interest.lowercased().replacingOccurrences(of: " ", with: "")) ?? CDYelpCategoryAlias.artsAndEntertainment )
         }
         if CLLocationManager.locationServicesEnabled(){
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters

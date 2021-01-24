@@ -55,6 +55,8 @@ For a demonstration of the capabilities of CDYelpFusionKit; run the iOS Example 
     - [Event Lookup Endpoint](#event-lookup)
     - [Event Search Endpoint](#event-search-endpoint)
     - [Featured Event Endpoint](#featured-event-endpoint)
+    - [All Categories Endpoint](#all-categories-endpoint)
+    - [Category Details Endpoint](#category-details-endpoint)
     - [Deep Linking](#deep-linking)
     - [Web Linking](#web-linking)
     - [Brand Assets](#brand-assets)
@@ -77,6 +79,8 @@ For a demonstration of the capabilities of CDYelpFusionKit; run the iOS Example 
     - [x] Event Lookup
     - [x] Event Search
     - [x] Featured Event
+    - [x] All Categories
+    - [x] Category Details
 - [x] Deep Linking
 - [x] Web Linking
 - [x] Brand Assets
@@ -93,16 +97,15 @@ For a demonstration of the capabilities of CDYelpFusionKit; run the iOS Example 
 
 ## Requirements
 
-- iOS 8.0+ / macOS 10.10+ / tvOS 9.0+ / watchOS 2.0+
-- Xcode 8.1+
-- Swift 3.0+
+- iOS 10.0+ / macOS 10.12+ / tvOS 10.0+ / watchOS 3.0+
+- Xcode 11+
+- Swift 5.1+
 - [Yelp API Access](https://www.yelp.com/developers/v3/manage_app)
 
 ---
 
 ## Dependencies
 
-- [AlamofireObjectMapper](https://github.com/tristanhimmelman/AlamofireObjectMapper)
 - [Alamofire](https://github.com/Alamofire/Alamofire)
 - [ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)
 
@@ -110,92 +113,69 @@ For a demonstration of the capabilities of CDYelpFusionKit; run the iOS Example 
 
 ## Installation
 
-### Installation via CocoaPods
+### CocoaPods
 
-CDYelpFusionKit is available through [CocoaPods](http://cocoapods.org). CocoaPods is a dependency manager that automates and simplifies the process of using 3rd-party libraries like CDYelpFusionKit in your projects. You can install CocoaPods with the following command:
-
-```ruby
-gem install cocoapods
-```
-
-To integrate CDYelpFusionKit into your Xcode project using CocoaPods, simply add the following line to your Podfile:
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate CDYelpFusionKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod 'CDYelpFusionKit', '1.5.1'
+pod 'CDYelpFusionKit', '2.1.0'
 ```
 
-Afterwards, run the following command:
+### Carthage
 
-```ruby
-pod install
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate CDYelpFusionKit into your Xcode project using Carthage, specify it in your `Cartfile`:
+
+```ogdl
+github "chrisdhaan/CDYelpFusionKit" == 2.1.0
 ```
 
-### Installation via Carthage
+### Swift Package Manager
 
-CDYelpFusionKit is available through [Carthage](https://github.com/Carthage/Carthage). Carthage is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+The [Swift Package Manager](https://swift.org/package-manager/) is a tool for automating the distribution of Swift code and is integrated into the `swift` compiler. It is in early development, but CDYelpFusionKit does support its use on supported platforms.
 
-You can install Carthage via [Homebrew](http://brew.sh) with the following commands:
-
-```ruby
-brew update
-brew install carthage
-```
-
-To integrate CDYelpFusionKit into your Xcode project using Carthage, simply add the following line to your Cartfile:
-
-```ruby
-github "chrisdhaan/CDYelpFusionKit" == 1.5.1
-```
-
-Afterwards, run the following command:
-
-```ruby
-carthage update
-```
-
-Next, add the built CDYelpFusionKit.framework into your Xcode project.
-
-### Installation via Swift Package Manager
-
-CDYelpFusionKit is available through the [Swift Package Manager](https://swift.org/package-manager). The Swift Package Manager is a tool for automating the distribution of Swift code.
-
-The Swift Package Manager is in early development, but CDYelpFusionKit does support its use on supported platforms. Until the Swift Package Manager supports non-host platforms, it is recommended to use CocoaPods, Carthage, or Git Submodules to build iOS, watchOS, and tvOS apps.
-
-The Swift Package Manager is integrated into the Swift compiler.
-
-To integrate CDYelpFusionKit into your Xcode project using The Swift Package Manager, simply add the following line to your Package.swift file:
+Once you have your Swift package set up, adding CDYelpFusionKit as a dependency is as easy as adding it to the `dependencies` value of your `Package.swift`.
 
 ```swift
 dependencies: [
-    .Package(url: "https://github.com/chrisdhaan/CDYelpFusionKit.git", "1.5.1")
+    .package(url: "https://github.com/chrisdhaan/CDYelpFusionKit.git", .upToNextMajor(from: "5.0.0"))
 ]
 ```
 
-Afterwards, run the following command:
+### Git Submodule
 
-```ruby
-swift package fetch
+If you prefer not to use any of the aforementioned dependency managers, you can integrate CDYelpFusionKit into your project manually.
+
+- Open up Terminal, `cd` into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
+
+```bash
+$ git init
 ```
 
-### Installation via Git Submodule
-
-CDYelpFusionKit is available through [Git Submodule](https://git-scm.com/docs/git-submodule) Git Submodule allows you to keep another Git repository in a subdirectory of your repository.
-
-If your project is not initialized as a git repository, navigate into your top-level project directory, and install Git Submodule with the following command:
-
-```git
-git init
-```
-
-To integrate CDYelpFusionKit into your Xcode project using Git Submodule, simply run the following command:
+- Add CDYelpFusionKit as a git [submodule](https://git-scm.com/docs/git-submodule) by running the following command:
 
 ```git
 git submodule add https://github.com/chrisdhaan/CDYelpFusionKit.git
 ```
 
-Afterwards, open the new **CDYelpFusionKit** folder, and drag the **CDYelpFusionKit.xcodeproj** into the **Project Navigator** of your Xcode project. A common location for the **CDYelpFusionKit.xcodeproj** is directly below the **Products** folder.
+- Open the new `CDYelpFusionKit` folder, and drag the `CDYelpFusionKit.xcodeproj` into the Project Navigator of your application's Xcode project.
 
-Next, select your application project in the **Project Navigator** to navigate to the target configuration window and select the application target under the **Targets** heading in the sidebar. In the tab bar at the top of that window, open the **General** panel. Click on the **+** button under the **Embedded Binaries** section. You will see two different CDYelpFusionKit.xcodeproj folders, each with a version of the CDYelpFusionKit.framework nested inside a Products folder. It does not matter which Products folder you choose from, select the CDYelpFusionKit.framework for iOS.
+    > It should appear nested underneath your application's blue project icon. Whether it is above or below all the other Xcode groups does not matter.
+
+- Select the `CDYelpFusionKit.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
+- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
+- In the tab bar at the top of that window, open the "General" panel.
+- Click on the `+` button under the "Embedded Binaries" section.
+- You will see two different `CDYelpFusionKit.xcodeproj` folders each with two different versions of the `CDYelpFusionKit.framework` nested inside a `Products` folder.
+
+    > It does not matter which `Products` folder you choose from, but it does matter whether you choose the top or bottom `CDYelpFusionKit.framework`.
+
+- Select the top `CDYelpFusionKit.framework` for iOS and the bottom one for macOS.
+
+    > You can verify which one you selected by inspecting the build log for your project. The build target for `CDYelpFusionKit` will be listed as either `CDYelpFusionKit iOS`, `CDYelpFusionKit macOS`, `CDYelpFusionKit tvOS` or `CDYelpFusionKit watchOS`.
+
+- And that's it!
+
+  > The `CDYelpFusionKit.framework` is automagically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
 
 ---
 
@@ -215,27 +195,27 @@ Once you've created a CDYelpAPIClient object you can use it to query the Yelp Fu
 ### [Search Endpoint](https://www.yelp.com/developers/documentation/v3/business_search)
 
 ```swift
-public func searchBusinesses(byTerm term: String?,                        // Optional
-                             location: String?,                           // Optional
-                             latitude: Double?,                           // Optional
-                             longitude: Double?,                          // Optional
-                             radius: Int?,                                // Optional - Max = 40000
-                             categories: [CDYelpBusinessCategoryFilter]?, // Optional
-                             locale: CDYelpLocale?,                       // Optional
-                             limit: Int?,                                 // Optional - Default = 20, Max = 50
-                             offset: Int?,                                // Optional
-                             sortBy: CDYelpBusinessSortType?,             // Optional - Default = .bestMatch
-                             priceTiers: [CDYelpPriceTier]?,              // Optional
-                             openNow: Bool?,                              // Optional - Default = false
-                             openAt: Int?,                                // Optional
-                             attributes: [CDYelpAttributeFilter]?,        // Optional
+public func searchBusinesses(byTerm term: String?,                 // Optional
+                             location: String?,                    // Optional
+                             latitude: Double?,                    // Optional
+                             longitude: Double?,                   // Optional
+                             radius: Int?,                         // Optional - Max = 40000
+                             categories: [CDYelpCategoryAlias]?,   // Optional
+                             locale: CDYelpLocale?,                // Optional
+                             limit: Int?,                          // Optional - Default = 20, Max = 50
+                             offset: Int?,                         // Optional
+                             sortBy: CDYelpBusinessSortType?,      // Optional - Default = .bestMatch
+                             priceTiers: [CDYelpPriceTier]?,       // Optional
+                             openNow: Bool?,                       // Optional - Default = false
+                             openAt: Int?,                         // Optional
+                             attributes: [CDYelpAttributeFilter]?, // Optional
                              completion: @escaping (CDYelpSearchResponse?) -> Void);
 ```
 
 The search endpoint has a `categories` parameter which allows for query results to be returned based off one thousand four hundred and sixty-one types of categories. The full list of categories can be found in `CDYelpEnums.swift`. The following lines of code show an example of a category that can be passed into the `categories` parameter.
 
 ```swift
-CDYelpBusinessCategoryFilter.activeLife
+CDYelpCategoryAlias.activeLife
 ```
 
 The search endpoint has a `locale` parameter which allows for query results to be returned based off forty-two types of language and country codes. The following lines of code show which locales can be passed into the `locale` parameter.
@@ -288,7 +268,7 @@ CDYelpLocale.turkish_turkey
 The search endpoint has a `sortBy` parameter which allows for query results to be filtered based off four types of criteria. The following lines of code show which sort types can be passed into the `sortBy` parameter.
 
 ```swift
-CDYelpBusinessSortType.bestMatch   // Default
+CDYelpBusinessSortType.bestMatch // Default
 CDYelpBusinessSortType.rating
 CDYelpBusinessSortType.reviewCount
 CDYelpBusinessSortType.distance
@@ -417,35 +397,36 @@ yelpAPIClient.fetchBusiness(forId: "north-india-restaurant-san-francisco"
 ### [Business Match Endpoint](https://www.yelp.com/developers/documentation/v3/business_match)
 
 ```swift
-public func searchBusinesses(byMatchType type: CDYelpBusinessMatchType!, // Required
-                             name: String!,                              // Required
-                             addressOne: String?,                        // Optional
-                             addressTwo: String?,                        // Optional
-                             addressThree: String?,                      // Optional
-                             city: String!,                              // Required
-                             state: String!,                             // Required
-                             country: String!,                           // Required
-                             latitude: Double?,                          // Optional
-                             longitude: Double?,                         // Optional
-                             phone: String?,                             // Optional
-                             postalCode: String?,                        // Optional
-                             yelpBusinessId: String?,                    // Optional
+public func searchBusinesses(name: String!,                                        // Required - Max length = 64
+                             addressOne: String?,                                  // Optional - Max length = 64
+                             addressTwo: String?,                                  // Optional - Max length = 64
+                             addressThree: String?,                                // Optional - Max length = 64
+                             city: String!,                                        // Required - Max length = 64
+                             state: String!,                                       // Required - Max length = 3
+                             country: String!,                                     // Required - Max length = 2
+                             latitude: Double?,                                    // Optional - Min = -90, Max = +90
+                             longitude: Double?,                                   // Optional - Min = -180, Max = +180
+                             phone: String?,                                       // Optional - Max length = 32
+                             zipCode: String?,                                     // Optional
+                             yelpBusinessId: String?,                              // Optional
+                             limit: Int?,                                          // Optional - Min = 1, Default = 3, Max = 10
+                             matchThresholdType: CDYelpBusinessMatchThresholdType, // Required
                              completion: @escaping (CDYelpSearchResponse?) -> Void)
 ```
 
-The business match endpoint has a `type` parameter which allows for query results to be filtered based off two types of criteria. The following lines of code show which business match types can be passed into the `byMatchType` parameter.
+The business match endpoint has a `matchThresholdType` parameter which allows for query results to be filtered based off three types of criteria. The following lines of code show which business match threshold types can be passed into the `matchThresholdType` parameter.
 
 ```swift
-CDYelpBusinessMatchType.best
-CDYelpBusinessMatchType.lookup
+CDYelpBusinessMatchThresholdType.none
+CDYelpBusinessMatchThresholdType.normal
+CDYelpBusinessMatchThresholdType.strict
 ```
 
 The following lines of code show an example query to the business match endpoint.
 
 ```swift
-yelpAPIClient.searchBusinesses(byMatchType: .best,
-                               name: "Yelp if you need HELP!",
-                               addressOne: nil,
+yelpAPIClient.searchBusinesses(name: "Gary Danko",
+                               addressOne: "800 N Point St",
                                addressTwo: nil,
                                addressThree: nil,
                                city: "San Francisco",
@@ -454,8 +435,10 @@ yelpAPIClient.searchBusinesses(byMatchType: .best,
                                latitude: nil,
                                longitude: nil,
                                phone: nil,
-                               postalCode: nil,
-                               yelpBusinessId: nil) { (response) in
+                               zipCode: nil,
+                               yelpBusinessId: nil,
+                               limit: 5,
+                               matchThresholdType: .normal) { (response) in
 
   if let response = response,
       let businesses = response.businesses,
@@ -547,9 +530,9 @@ public func searchEvents(byLocale locale: CDYelpLocale?,           // Optional
                          limit: Int?,                              // Optional - Default = 3, Max = 50
                          sortBy: CDYelpEventSortByType?,           // Optional - Default = .descending
                          sortOn: CDYelpEventSortOnType?,           // Optional - Default = .popularity
-                         categories: [CDYelpEventCategoryFilter]?, // Optional
                          startDate: Date?,                         // Optional
                          endDate: Date?,                           // Optional
+                         categories: [CDYelpEventCategoryFilter]?, // Optional
                          isFree: Bool?,                            // Optional - Default = false
                          location: String?,                        // Optional
                          latitude: Double?,                        // Optional
@@ -601,9 +584,9 @@ yelpAPIClient.searchEvents(byLocale: nil,
                            limit: 5,
                            sortBy: .descending,
                            sortOn: .popularity,
-                           categories: [.music, .foodAndDrink],
                            startDate: nil,
                            endDate: nil,
+                           categories: [.music, .foodAndDrink],
                            isFree: false,
                            location: nil,
                            latitude: 37.786572,
@@ -645,6 +628,56 @@ yelpAPIClient.fetchFeaturedEvent(forLocale: nil,
 }
 ```
 
+### [All Categories Endpoint](https://www.yelp.com/developers/documentation/v3/all_categories)
+
+```swift
+public func fetchCategories(forLocale locale: CDYelpLocale?, // Optional
+                            completion: @escaping (CDYelpCategoriesResponse?) -> Void)
+```
+
+The all categories endpoint has a `locale` parameter which allows for query results to be returned based off forty-two types of language and country codes. Refer to the [search endpoint](#search-endpoint) for information regarding using the `locale` parameter.
+
+The following lines of code show an example query to the featured event endpoint.
+
+```swift
+yelpAPIClient.fetchCategories(forLocale: nil) { (response) in
+
+  if let response = response,
+      let categories = response.categories {
+    print(categories)
+  }
+}
+```
+
+### [Category Details Endpoint](https://www.yelp.com/developers/documentation/v3/category)
+
+```swift
+public func fetchCategory(forAlias alias: CDYelpCategoryAlias!, // Required
+                          andLocale locale: CDYelpLocale?,      // Optional
+                          completion: @escaping (CDYelpCategoryResponse?) -> Void)
+```
+
+The category details endpoint has an `alias` parameter which allows for query results to be returned based off one thousand four hundred and sixty-one types of categories. The full list of categories can be found in `CDYelpEnums.swift`. The following lines of code show an example of a category that can be passed into the `alias` parameter.
+
+```swift
+CDYelpCategoryAlias.activeLife
+```
+
+The category details endpoint has a `locale` parameter which allows for query results to be returned based off forty-two types of language and country codes. Refer to the [search endpoint](#search-endpoint) for information regarding using the `locale` parameter.
+
+The following lines of code show an example query to the featured event endpoint.
+
+```swift
+yelpAPIClient.fetchCategory(forAlias: .fastFood,
+                            andLocale: nil) { (response) in
+
+  if let response = response,
+      let category = response.category {
+    print(category)
+  }
+}
+```
+
 ### [Deep Linking](https://www.yelp.com/developers/documentation/v2/iphone)
 
 The Yelp iPhone application registers URL schemes that can be used to open the Yelp application, perform searches, view business information, or check-in.
@@ -667,9 +700,9 @@ if let url = URL.yelpDeepLink(),
 ### [Search](https://www.yelp.com/developers/documentation/v2/iphone)
 
 ```swift
-static func yelpSearchDeepLink(withTerm term: String?,                  // Optional
-                               category: CDYelpBusinessCategoryFilter?, // Optional
-                               location: String?) -> URL?               // Optional
+static func yelpSearchDeepLink(withTerm term: String?,         // Optional
+                               category: CDYelpCategoryAlias?, // Optional
+                               location: String?) -> URL?      // Optional
 ```
 
 The search deep link has a `category` parameter which allows for query results to be returned based off one thousand four hundred and sixty-one types of categories. Refer to the [search endpoint](#search-endpoint) for information regarding using the `category` parameter.
@@ -777,9 +810,9 @@ if let url = URL.yelpWebLink(),
 ### [Search](https://www.yelp.com/developers/documentation/v2/iphone)
 
 ```swift
-static func yelpSearchWebLink(withTerm term: String?,                  // Optional
-                              category: CDYelpBusinessCategoryFilter?, // Optional
-                              location: String?) -> URL?               // Optional
+static func yelpSearchWebLink(withTerm term: String?,         // Optional
+                              category: CDYelpCategoryAlias?, // Optional
+                              location: String?) -> URL?      // Optional
 ```
 
 The search deep link has a `category` parameter which allows for query results to be returned based off one thousand four hundred and sixty-one types of categories. Refer to the [search endpoint](#search-endpoint) for information regarding using the `category` parameter.

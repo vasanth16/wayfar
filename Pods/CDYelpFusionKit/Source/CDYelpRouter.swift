@@ -4,7 +4,7 @@
 //
 //  Created by Christopher de Haan on 11/10/16.
 //
-//  Copyright © 2016-2018 Christopher de Haan <contact@christopherdehaan.me>
+//  Copyright © 2016-2020 Christopher de Haan <contact@christopherdehaan.me>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -33,12 +33,14 @@ enum CDYelpRouter: URLRequestConvertible {
     case phone(parameters: Parameters)
     case transactions(type: String, parameters: Parameters)
     case business(id: String, parameters: Parameters)
-    case matches(type: String, parameters: Parameters)
+    case matches(parameters: Parameters)
     case reviews(id: String, parameters: Parameters)
     case autocomplete(parameters: Parameters)
     case event(id: String, parameters: Parameters)
     case events(parameters: Parameters)
     case featuredEvent(parameters: Parameters)
+    case allCategories(parameters: Parameters)
+    case categoryDetails(alias: String, parameters: Parameters)
 
     var method: HTTPMethod {
         switch self {
@@ -46,12 +48,14 @@ enum CDYelpRouter: URLRequestConvertible {
              .phone(parameters: _),
              .transactions(type: _, parameters: _),
              .business(id: _, parameters: _),
-             .matches(type: _, parameters: _),
+             .matches(parameters: _),
              .reviews(id: _, parameters: _),
              .autocomplete(parameters: _),
              .event(id: _, parameters: _),
              .events(parameters: _),
-             .featuredEvent(parameters: _):
+             .featuredEvent(parameters: _),
+             .allCategories(parameters: _),
+             .categoryDetails(alias: _, parameters: _):
             return .get
         }
     }
@@ -66,8 +70,8 @@ enum CDYelpRouter: URLRequestConvertible {
             return "transactions/\(type)/search"
         case .business(let id, parameters: _):
             return "businesses/\(id)"
-        case .matches(let type, parameters: _):
-            return "businesses/matches/\(type)"
+        case .matches(parameters: _):
+            return "businesses/matches"
         case .reviews(let id, parameters: _):
             return "businesses/\(id)/reviews"
         case .autocomplete(parameters: _):
@@ -78,6 +82,10 @@ enum CDYelpRouter: URLRequestConvertible {
             return "events"
         case .featuredEvent(parameters: _):
             return "events/featured"
+        case .allCategories(parameters: _):
+            return "categories"
+        case .categoryDetails(let alias, parameters: _):
+            return "categories/\(alias)"
         }
     }
 
@@ -92,12 +100,14 @@ enum CDYelpRouter: URLRequestConvertible {
              .phone(let parameters),
              .transactions(type: _, let parameters),
              .business(id: _, let parameters),
-             .matches(type: _, let parameters),
+             .matches(let parameters),
              .reviews(id: _, let parameters),
              .autocomplete(let parameters),
              .event(id: _, let parameters),
              .events(let parameters),
-             .featuredEvent(let parameters):
+             .featuredEvent(let parameters),
+             .allCategories(let parameters),
+             .categoryDetails(alias: _, let parameters):
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         }
 

@@ -4,7 +4,7 @@
 //
 //  Created by Christopher de Haan on 11/16/17.
 //
-//  Copyright © 2016-2018 Christopher de Haan <contact@christopherdehaan.me>
+//  Copyright © 2016-2020 Christopher de Haan <contact@christopherdehaan.me>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -70,13 +70,13 @@ public extension URL {
     ///
     /// - parameters:
     ///   - withTerm: (Optional) Search terms for the Yelp application to query. Specifying no term will search for everything. Term can also be business names such as "Starbucks".
-    ///   - category: (Optional) A category to filter the search results with. Use the **CDYelpBusinessCategoryFilter** enum to get the list of supported categories.
+    ///   - category: (Optional) A category to filter the search results with. Use the **CDYelpCategoryAlias** enum to get the list of supported categories.
     ///   - location: A location to filter the search results with. Specifying no location will use current location.
     ///
     /// - returns: URL?
     ///
     static func yelpSearchDeepLink(withTerm term: String?,
-                                   category: CDYelpBusinessCategoryFilter?,
+                                   category: CDYelpCategoryAlias?,
                                    location: String?) -> URL? {
         let path = String.searchLinkPath(withTerm: term,
                                          category: category,
@@ -91,13 +91,13 @@ public extension URL {
     ///
     /// - parameters:
     ///   - withTerm: (Optional) Search terms for the Yelp application to query. Specifying no term will search for everything. Term can also be business names such as "Starbucks".
-    ///   - category: (Optional) A category to filter the search results with. Use the **CDYelpBusinessCategoryFilter** enum to get the list of supported categories.
+    ///   - category: (Optional) A category to filter the search results with. Use the **CDYelpCategoryAlias** enum to get the list of supported categories.
     ///   - location: A location to filter the search results with. Specifying no location will use current location.
     ///
     /// - returns: URL?
     ///
     static func yelpSearchWebLink(withTerm term: String?,
-                                  category: CDYelpBusinessCategoryFilter?,
+                                  category: CDYelpCategoryAlias?,
                                   location: String?) -> URL? {
         let path = String.searchLinkPath(withTerm: term,
                                          category: category,
@@ -116,7 +116,7 @@ public extension URL {
     /// - returns: URL?
     ///
     static func yelpBusinessDeepLink(forId id: String!) -> URL? {
-        assert((id != nil && id != ""), "A business id is to query the Yelp business deep link.")
+        assert((id != nil && id.count > 0), "A business id is to query the Yelp business deep link.")
 
         let path = String.businessLinkPath(forId: id)
 
@@ -133,7 +133,7 @@ public extension URL {
     /// - returns: URL?
     ///
     static func yelpBusinessWebLink(forId id: String!) -> URL? {
-        assert((id != nil && id != ""), "A business id is to query the Yelp business deep link.")
+        assert((id != nil && id.count > 0), "A business id is to query the Yelp business deep link.")
 
         let path = String.businessLinkPath(forId: id)
 

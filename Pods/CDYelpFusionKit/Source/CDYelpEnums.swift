@@ -4,7 +4,7 @@
 //
 //  Created by Christopher de Haan on 7/25/17.
 //
-//  Copyright © 2016-2018 Christopher de Haan <contact@christopherdehaan.me>
+//  Copyright © 2016-2020 Christopher de Haan <contact@christopherdehaan.me>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -34,17 +34,20 @@
 public enum CDYelpAttributeFilter: String {
     case hotAndNew              = "hot_and_new"
     case requestAQuote          = "request_a_quote"
+    case reservation            = "reservation"
     case waitlistReservation    = "waitlist_reservation"
     case cashback               = "cashback"
     case deals                  = "deals"
     case genderNeutralRestrooms = "gender_neutral_restrooms"
+    case openToAll              = "open_to_all"
+    case wheelchairAccessible   = "wheelchair_accessible"
 }
 
 ///
 /// A list of the business categories the Yelp Fusion API supports.
 ///
 // swiftlint:disable type_body_length
-public enum CDYelpBusinessCategoryFilter: String {
+public enum CDYelpCategoryAlias: String {
     // Active Life
     case activeLife                 = "active"
     case atvRentalsAndTours         = "atvrentals"
@@ -1575,11 +1578,21 @@ public enum CDYelpBusinessCategoryFilter: String {
 // swiftlint:enable identifier_name
 
 ///
-/// A list of business match types the Yelp Fusion API supports.
+/// A list of business match threshold types the Yelp Fusion API supports.
 ///
-public enum CDYelpBusinessMatchType: String {
-    case best
-    case lookup
+public enum CDYelpBusinessMatchThresholdType: String {
+    ///
+    /// Do not apply any match quality threshold; all potential business matches will be returned.
+    ///
+    case none
+    ///
+    /// Apply a match quality threshold such that only very closely matching businesses will be returned.
+    ///
+    case normal = "default"
+    ///
+    /// Apply a very strict match quality threshold.
+    ///
+    case strict
 }
 
 ///
@@ -1717,7 +1730,9 @@ public enum CDYelpStarsSize: String {
 /// A list of the transaction types the Yelp Fusion API supports. Currently, only food delivery is supported and it is only supported in the U.S.
 ///
 public enum CDYelpTransactionType: String {
-    case foodDelivery   = "delivery"
+    case foodDelivery           = "delivery"
+    case pickup                 = "pickup"
+    case restaurantReservation  = "restaurant_reservation"
 }
 
 // swiftlint:enable file_length
