@@ -30,18 +30,22 @@ struct InterestsView: View {
                 
             }
             
-            Button(action: { // On button tap
+            Button(action: {
+                // On button tap
                 let newY = yelpRequests()
                 newY.getBusiness(interests: self.selections)
-                self.yrequests = newY
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0){ // manual wait since api request takes a second to process
-                self.show.toggle() // toggles show to trigger NavigationLink
+                //newY.getBusiness(interests: self.selections)
+                //print(newY.busis.count)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+                    // manual wait since api request takes a second to process
+                    self.yrequests = newY
+                    self.show.toggle() // toggles show to trigger NavigationLink
                 }
             }) {
                 Text("Next")
             }
-            NavigationLink(destination: ItineraryView(selections: yrequests.busis), isActive: self.$show){ // links to ItineraryView, sends in businesses recieved from yelp request
-                EmptyView()
+            NavigationLink(destination: ItineraryView(selections: yrequests.busis), isActive: self.$show){
+                // links to ItineraryView, sends in businesses recieved from yelp request
             }
         
     }
