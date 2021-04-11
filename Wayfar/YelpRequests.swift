@@ -13,7 +13,7 @@ import CDYelpFusionKit
 class yelpRequests {
     let id = ""
     let locationManager = CLLocationManager() // location manager to manage user's location
-    let yelpAPIClient = CDYelpAPIClient(apiKey: ) // Yelp API Key
+    let yelpAPIClient = CDYelpAPIClient(apiKey:"" ) // Yelp API Key
     var busis: [CDYelpFusionKit.CDYelpBusiness] = [] // Array of businesses to be exported to different views
     
     func getLatitude() -> Double {
@@ -37,17 +37,17 @@ class yelpRequests {
             // The yelp api call
             print(getLatitude())
             
-            yelpAPIClient.searchBusinesses(byTerm: nil, location: nil, latitude: getLatitude(), longitude: getLongitude(), radius: 10000, categories: categories, locale: nil, limit: 10, offset: nil, sortBy: nil, priceTiers: nil, openNow: true, openAt: nil, attributes: nil) { (response) in
+            yelpAPIClient.searchBusinesses(byTerm: nil, location: nil, latitude: getLatitude(), longitude: getLongitude(), radius: 10000, categories: categories, locale: nil, limit: 3, offset: nil, sortBy: nil, priceTiers: nil, openNow: true, openAt: nil, attributes: nil) { (response) in
                 let res = response // response from API
                 if ((res!.businesses) != nil){
                     for r in (res!.businesses)!{
-                        //print(r.name)
+                        print(r.name)
                         self.busis.append(r) // adds the business to the list of businesses
-                        print(self.busis.count)
                     }
                 }
             }
         }
+        print(self.busis)
     }
     
 }

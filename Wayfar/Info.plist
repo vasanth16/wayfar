@@ -60,5 +60,15 @@
 	<string>&quot;Location always on&quot;</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>&quot;Location there&quot;</string>
+    <key>UberClientID</key>
+    <string>ONd0BXIHXsMRukbg-g1iXO_qOv7tWsqy</string>
+    <key>UberDisplayName</key>
+    <string>Wayfare</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>uber</string>
+        <string>uberauth</string>
+    </array>
 </dict>
+
 </plist>

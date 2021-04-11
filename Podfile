@@ -8,6 +8,8 @@ target 'Wayfar' do
   # Pods for Wayfar
 	pod "YelpAPI"
   	pod 'CDYelpFusionKit'
+	pod 'UberRides', '~> 0.9'
+	pod 'SwiftyJSON'
 
 
 end

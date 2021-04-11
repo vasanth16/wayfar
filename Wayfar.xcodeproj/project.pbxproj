@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,8 +13,12 @@
 		B70C5FEB23764786005FC420 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B70C5FEA23764786005FC420 /* Assets.xcassets */; };
 		B70C5FEE23764786005FC420 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B70C5FED23764786005FC420 /* Preview Assets.xcassets */; };
 		B70C5FF123764786005FC420 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B70C5FEF23764786005FC420 /* LaunchScreen.storyboard */; };
+		B70F01E72620040A00E09DC5 /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70F01E62620040A00E09DC5 /* RouteView.swift */; };
 		B72AC593237B83E30062EBF5 /* YelpRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72AC592237B83E30062EBF5 /* YelpRequests.swift */; };
+		B73D2C2026211A6C000B0D08 /* Liquid in Frameworks */ = {isa = PBXBuildFile; productRef = B73D2C1F26211A6C000B0D08 /* Liquid */; };
 		B7401B182381FDBD009A92D2 /* ItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7401B172381FDBC009A92D2 /* ItineraryView.swift */; };
+		B746DE3525EB0919007D020E /* TravelCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B746DE3425EB0919007D020E /* TravelCalc.swift */; };
+		B746DE3925EE0024007D020E /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = B746DE3825EE0024007D020E /* URLImage */; };
 		B7FADEB8237A7F0D00C65540 /* InterestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FADEB7237A7F0D00C65540 /* InterestsView.swift */; };
 		B7FADEBA237A807C00C65540 /* StartPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FADEB9237A807C00C65540 /* StartPageView.swift */; };
 		BD790DA02A62C1D7DFF30CD7 /* Pods_Wayfar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDC1A6FD01E5FB869DFF0936 /* Pods_Wayfar.framework */; };
@@ -31,8 +35,10 @@
 		B70C5FED23764786005FC420 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B70C5FF023764786005FC420 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B70C5FF223764786005FC420 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B70F01E62620040A00E09DC5 /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
 		B72AC592237B83E30062EBF5 /* YelpRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpRequests.swift; sourceTree = "<group>"; };
 		B7401B172381FDBC009A92D2 /* ItineraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItineraryView.swift; sourceTree = "<group>"; };
+		B746DE3425EB0919007D020E /* TravelCalc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelCalc.swift; sourceTree = "<group>"; };
 		B7FADEB7237A7F0D00C65540 /* InterestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestsView.swift; sourceTree = "<group>"; };
 		B7FADEB9237A807C00C65540 /* StartPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPageView.swift; sourceTree = "<group>"; };
 		DDC1A6FD01E5FB869DFF0936 /* Pods_Wayfar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Wayfar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,7 +49,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B746DE3925EE0024007D020E /* URLImage in Frameworks */,
 				BD790DA02A62C1D7DFF30CD7 /* Pods_Wayfar.framework in Frameworks */,
+				B73D2C2026211A6C000B0D08 /* Liquid in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +99,8 @@
 				B70C5FEF23764786005FC420 /* LaunchScreen.storyboard */,
 				B70C5FF223764786005FC420 /* Info.plist */,
 				B70C5FEC23764786005FC420 /* Preview Content */,
+				B746DE3425EB0919007D020E /* TravelCalc.swift */,
+				B70F01E62620040A00E09DC5 /* RouteView.swift */,
 			);
 			path = Wayfar;
 			sourceTree = "<group>";
@@ -129,6 +139,10 @@
 			dependencies = (
 			);
 			name = Wayfar;
+			packageProductDependencies = (
+				B746DE3825EE0024007D020E /* URLImage */,
+				B73D2C1F26211A6C000B0D08 /* Liquid */,
+			);
 			productName = Wayfar;
 			productReference = B70C5FE12376477C005FC420 /* Wayfar.app */;
 			productType = "com.apple.product-type.application";
@@ -157,6 +171,10 @@
 				Base,
 			);
 			mainGroup = B70C5FD82376477C005FC420;
+			packageReferences = (
+				B746DE3725EE0024007D020E /* XCRemoteSwiftPackageReference "url-image" */,
+				B73D2C1E26211A6C000B0D08 /* XCRemoteSwiftPackageReference "liquid" */,
+			);
 			productRefGroup = B70C5FE22376477C005FC420 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -230,8 +248,10 @@
 				B70C5FE72376477C005FC420 /* SceneDelegate.swift in Sources */,
 				B7FADEBA237A807C00C65540 /* StartPageView.swift in Sources */,
 				B7FADEB8237A7F0D00C65540 /* InterestsView.swift in Sources */,
+				B746DE3525EB0919007D020E /* TravelCalc.swift in Sources */,
 				B70C5FE92376477C005FC420 /* ContentView.swift in Sources */,
 				B72AC593237B83E30062EBF5 /* YelpRequests.swift in Sources */,
+				B70F01E72620040A00E09DC5 /* RouteView.swift in Sources */,
 				B7401B182381FDBD009A92D2 /* ItineraryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +452,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B73D2C1E26211A6C000B0D08 /* XCRemoteSwiftPackageReference "liquid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maustinstar/liquid";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
+		B746DE3725EE0024007D020E /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B73D2C1F26211A6C000B0D08 /* Liquid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B73D2C1E26211A6C000B0D08 /* XCRemoteSwiftPackageReference "liquid" */;
+			productName = Liquid;
+		};
+		B746DE3825EE0024007D020E /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B746DE3725EE0024007D020E /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B70C5FD92376477C005FC420 /* Project object */;
 }
