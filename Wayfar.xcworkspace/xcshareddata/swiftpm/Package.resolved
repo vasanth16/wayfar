@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Liquid",
+        "repositoryURL": "https://github.com/maustinstar/liquid",
+        "state": {
+          "branch": null,
+          "revision": "0fb5b5a2aa34dc5d7c59d1afea33497f25b1aee9",
+          "version": "0.0.1"
+        }
+      },
+      {
+        "package": "URLImage",
+        "repositoryURL": "https://github.com/dmytro-anokhin/url-image",
+        "state": {
+          "branch": null,
+          "revision": "c1a906515b0a440927b96204b778058871b22f23",
+          "version": "2.2.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

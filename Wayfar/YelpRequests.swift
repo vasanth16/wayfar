@@ -11,9 +11,9 @@ import CoreLocation
 import CDYelpFusionKit
 
 class yelpRequests {
-    let id = ""
+    let id = "9E7QeY2veNmPTWtEiwlZxw"
     let locationManager = CLLocationManager() // location manager to manage user's location
-    let yelpAPIClient = CDYelpAPIClient(apiKey:"" ) // Yelp API Key
+    let yelpAPIClient = CDYelpAPIClient(apiKey:"jyeNOVKa449cPnMn7EASMGbfGXNaipPDebuUviXP1PH1PPJoPE4GNmrfviz_JyOLhLQuM-rtDIsUVFPHJKH5IZy1_dHjHr1cyo5DwWIi9g7dji5pN2BlkSPlGUXLXXYx" ) // Yelp API Key
     var busis: [CDYelpFusionKit.CDYelpBusiness] = [] // Array of businesses to be exported to different views
     
     func getLatitude() -> Double {
@@ -24,9 +24,13 @@ class yelpRequests {
       let coordinate = locationManager.location?.coordinate ?? CLLocationCoordinate2D()
       return coordinate.longitude
     }
-    func getBusiness(interests: [String]) -> Void{ // function to get businesses near location based on type
+    func getBusiness(interests: [String], amount: Int, exception: String? = nil) -> Void{ // function to get businesses near location based on type
         locationManager.requestAlwaysAuthorization() // Gets authorization to use the Devices location
         locationManager.requestWhenInUseAuthorization()
+        var alt = false
+        if exception != nil{
+            alt = true
+        }
         var categories: [CDYelpCategoryAlias] = [] // List of categories
         for interest in interests{ // creates category objects that are then appended categories array to be sent into the api call
             categories.append( CDYelpCategoryAlias.init(rawValue: interest.lowercased().replacingOccurrences(of: " ", with: "")) ?? CDYelpCategoryAlias.artsAndEntertainment )
@@ -37,12 +41,20 @@ class yelpRequests {
             // The yelp api call
             print(getLatitude())
             
-            yelpAPIClient.searchBusinesses(byTerm: nil, location: nil, latitude: getLatitude(), longitude: getLongitude(), radius: 10000, categories: categories, locale: nil, limit: 3, offset: nil, sortBy: nil, priceTiers: nil, openNow: true, openAt: nil, attributes: nil) { (response) in
+            yelpAPIClient.searchBusinesses(byTerm: nil, location: nil, latitude: getLatitude(), longitude: getLongitude(), radius: 10000, categories: categories, locale: nil, limit: amount, offset: nil, sortBy: nil, priceTiers: nil, openNow: true, openAt: nil, attributes: nil) { (response) in
                 let res = response // response from API
                 if ((res!.businesses) != nil){
                     for r in (res!.businesses)!{
-                        print(r.name)
+                        //print(r.name)
+                        if alt{
+                            if r.name == exception{
+                                continue
+                            }else{
+                                self.busis.append(r) // adds the business to the list of businesses
+                            }
+                        }
                         self.busis.append(r) // adds the business to the list of businesses
+                        
                     }
                 }
             }

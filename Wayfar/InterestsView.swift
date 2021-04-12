@@ -34,7 +34,7 @@ struct InterestsView: View {
                 // On button tap
                 let newY = yelpRequests()
                 for i in self.selections{
-                    newY.getBusiness(interests: [i])
+                    newY.getBusiness(interests: [i], amount: 3)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){print(newY.busis)}
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){

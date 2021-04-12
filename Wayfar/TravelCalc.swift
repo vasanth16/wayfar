@@ -33,8 +33,8 @@ class TravelCalc{
         //reference: https://stackoverflow.com/questions/24321165/make-rest-api-call-in-swift
         //let coords = coords as Dictionary<String, [Double]>
         //var jsonn : [String: AnyObject]
-        let username = ""
-        let password = ""
+        let username = "vvvv1100"
+        let password = "89M4t48BjG8fJPah"
         let loginString = String(format: "%@:%@", username, password)
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()
