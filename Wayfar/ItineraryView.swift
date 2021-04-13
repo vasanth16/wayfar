@@ -8,7 +8,6 @@
 import SwiftUI
 import CDYelpFusionKit
 import URLImage
-import UberRides
 import CoreLocation
 
 
@@ -32,10 +31,14 @@ struct ItineraryView: View {
             }else{
                 Button(action:{
                     calcTravel()
-                    self.next = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 7.0){
+                        self.next = true
+                        print(route)
+                    }
                 }){
                     Text("Calculate My Route")
                 }
+            //NavigationLink(destination: RouteView(route: route)){}
             }
             
 //            Button(action:{
@@ -54,8 +57,12 @@ struct ItineraryView: View {
 }
 func calcTravel(){
     let travC = TravelCalc()
-    route = travC.main(places: picked)
-    print(route)
+    travC.main(places: picked)
+    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
+        route = travC.optimalList
+        print(route)
+    }
+    
 }
 func parseBusiness(bus: CDYelpBusiness) -> [String] {
     // parses business object that is sent in and returns an array with the name and its type
@@ -92,14 +99,14 @@ struct PlaceView: View {
         }
         }
 }
-func uberButton (current: CDYelpBusiness){
-    let Ridebutton = RideRequestButton()
-    let builder = RideParametersBuilder()
-    let dropoffLocation = CLLocation(latitude: (current.coordinates?.latitude)!, longitude: (current.coordinates?.longitude)!)
-    builder.dropoffLocation = dropoffLocation
-    builder.dropoffNickname = current.name!
-    Ridebutton.rideParameters = builder.build()
-}
+//func uberButton (current: CDYelpBusiness){
+//    let Ridebutton = RideRequestButton()
+//    let builder = RideParametersBuilder()
+//    let dropoffLocation = CLLocation(latitude: (current.coordinates?.latitude)!, longitude: (current.coordinates?.longitude)!)
+//    builder.dropoffLocation = dropoffLocation
+//    builder.dropoffNickname = current.name!
+//    Ridebutton.rideParameters = builder.build()
+//}
 struct detailsView: View {
     var current: CDYelpBusiness
     var body: some View{

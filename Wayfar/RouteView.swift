@@ -30,7 +30,7 @@ struct RouteView: View {
                     NavigationLink(r.name!, destination: RouteDetailsView(current: r))
                 }
             }
-        }.navigationBarTitle("Your Optimal Route")
+        }.navigationBarTitle("Your Route")
 }
 }
 
@@ -47,40 +47,75 @@ struct RoutePlaceView: View{
 
 struct RouteDetailsView: View{
     var current: CDYelpBusiness
-    @State var alternatives: [CDYelpBusiness] = getAlts(business: current)
+    var alts: [CDYelpBusiness] = []
+    @State var next: Bool = false
+    @State var yelp = yelpRequests()
     var body: some View{
-        Text(current.name ?? "Name").bold().frame(maxWidth: .infinity, alignment: .center)
-        Text(current.phone ?? "Phone")
-        Text(String(current.rating!) + " Stars")
-        //Text(String(format: "%f", current.location! as! CVarArg))
-        URLImage(url: current.imageUrl!) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+        VStack{
+            Text(current.name ?? "Name").bold().frame(maxWidth: .infinity, alignment: .center)
+            Text(current.phone ?? "Phone")
+            Text(String(current.rating!) + " Stars")
+            //Text(String(format: "%f", current.location! as! CVarArg))
+            URLImage(url: current.imageUrl!) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+            if next{
+                NavigationLink("Next", destination: AlternativesView(alternatives: yelp.busis))
+            }else{
+                Button(action:{
+                    //self.alts = getAlts(business: current)
+                    let newY = yelpRequests()
+                    newY.getBusiness(interests: [current.categories![0].alias!], amount: 5, exception: current.name!)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+                        yelp = newY
+                        print(yelp.busis)
+                        next = true
+                        print("bye")
+                    }
+                    
+                }){
+                    Text("Get Alternatives!")
+                }
+                
+            }
         }
-        Text("Alternatives").bold().underline()
-        List (getAlts(business: current), id: \.id){ alts in
-            Text(alts.name!)
-            //PlaceView(sel: current)
+        
+        
+//        Text("Alternatives").bold().underline()
+//        List (getAlts(business: current), id: \.id){ alts in
+//            Text(alts.name!)
+//            //PlaceView(sel: current)
+//        }
+    }
+}
+
+struct AlternativesView: View{
+    //var current: CDYelpBusiness
+    var alternatives: [CDYelpBusiness] = []
+    var body: some View{
+        List(alternatives, id: \.id){ alt in
+            PlaceView(sel: alt)
         }
     }
 }
 
-func getAlts (business: CDYelpBusiness) -> [CDYelpBusiness]{
-    let yelp = yelpRequests()
-    var returnArry: [CDYelpBusiness] = []
-    yelp.getBusiness(interests: [business.categories![0].alias!], amount: 5, exception: business.name!)
-    
-    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
-        returnArry = yelp.busis
-        print(returnArry)
-        print("bye")
-    }
-    print("Hi")
-    //Thread.sleep(forTimeInterval: 3)
-    //print(yelp.busis)
-    return returnArry
-}
+//func getAlts (business: CDYelpBusiness) -> [CDYelpBusiness]{
+//
+//    var returnArry: [CDYelpBusiness] = []
+//
+//
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
+//        returnArry = yelp.busis
+//        print(returnArry)
+//        print("bye")
+//    }
+//    print("Hi")
+//    //Thread.sleep(forTimeInterval: 3)
+//    //print(yelp.busis)
+//    return returnArry
+//}
 
 
 struct RouteView_Previews: PreviewProvider {

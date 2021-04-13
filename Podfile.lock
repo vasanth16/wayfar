@@ -4,16 +4,10 @@ PODS:
     - Alamofire (= 5.2.2)
     - ObjectMapper (= 4.2.0)
   - ObjectMapper (4.2.0)
-  - SwiftyJSON (5.0.1)
-  - UberCore (0.13.0)
-  - UberRides (0.13.0):
-    - UberCore
   - YelpAPI (3.0.0)
 
 DEPENDENCIES:
   - CDYelpFusionKit
-  - SwiftyJSON
-  - UberRides (~> 0.9)
   - YelpAPI
 
 SPEC REPOS:
@@ -21,20 +15,14 @@ SPEC REPOS:
     - Alamofire
     - CDYelpFusionKit
     - ObjectMapper
-    - SwiftyJSON
-    - UberCore
-    - UberRides
     - YelpAPI
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
   CDYelpFusionKit: b828e471ab7da62245d834c6cac71f7d35e16b48
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
-  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  UberCore: 27cd75eff06f70c57897fa3dcec1eb015a8c24ad
-  UberRides: 6344d67ed1547b6b66c88f5c15dd659d9028217d
   YelpAPI: 9ae0ee45b998d306c1aff9b2d966dc23121f191e
 
-PODFILE CHECKSUM: b7b1927318383e20abe467effab93064f9918dbc
+PODFILE CHECKSUM: d8972c9ac60bc6d8d3c7393e11d130291e06ff5a
 
 COCOAPODS: 1.8.4

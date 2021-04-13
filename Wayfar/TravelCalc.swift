@@ -33,8 +33,8 @@ class TravelCalc{
         //reference: https://stackoverflow.com/questions/24321165/make-rest-api-call-in-swift
         //let coords = coords as Dictionary<String, [Double]>
         //var jsonn : [String: AnyObject]
-        let username = "vvvv1100"
-        let password = "89M4t48BjG8fJPah"
+        let username = ""
+        let password = ""
         let loginString = String(format: "%@:%@", username, password)
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()
@@ -50,7 +50,7 @@ class TravelCalc{
         do {
             let data = try JSONSerialization.data(withJSONObject: params, options: [])
             string = String(data: data, encoding: String.Encoding.utf8)!
-            print(string)
+            //print(string)
             } catch {
               print("hi")
             }
@@ -61,10 +61,11 @@ class TravelCalc{
         request.addValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
-            //print(response!)
+            print(response!)
             //let str = String(decoding: data!, as: UTF8.self)
             //self.optimalRoute = str
             do {
+                print("Hi")
                 let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
                 self.optimalRoute = json
             } catch {
@@ -72,19 +73,19 @@ class TravelCalc{
             }
         })
         task.resume()
-        sleep(3)
     }
-    func main(places: [String:CDYelpBusiness]) -> [CDYelpBusiness]{
+    func main(places: [String:CDYelpBusiness]){
         var coords: [String:[Double]] = [:]
         for (place,obj) in places{
             coords[place] = [obj.coordinates!.latitude!,obj.coordinates!.longitude!]
         }
         getRoute(coords: coords)
-        //print(self.optimalRoute)
-        sleep(3)
-        parseResponse(places: places)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0){ [self] in
+            print(self.optimalRoute)
+            parseResponse(places: places)}
         print(self.optimalList)
-        return self.optimalList
+        //return self.optimalList
         
     }
     

@@ -11,9 +11,9 @@ import CoreLocation
 import CDYelpFusionKit
 
 class yelpRequests {
-    let id = "9E7QeY2veNmPTWtEiwlZxw"
+    let id = ""
     let locationManager = CLLocationManager() // location manager to manage user's location
-    let yelpAPIClient = CDYelpAPIClient(apiKey:"jyeNOVKa449cPnMn7EASMGbfGXNaipPDebuUviXP1PH1PPJoPE4GNmrfviz_JyOLhLQuM-rtDIsUVFPHJKH5IZy1_dHjHr1cyo5DwWIi9g7dji5pN2BlkSPlGUXLXXYx" ) // Yelp API Key
+    let yelpAPIClient = CDYelpAPIClient(apiKey:"" ) // Yelp API Key
     var busis: [CDYelpFusionKit.CDYelpBusiness] = [] // Array of businesses to be exported to different views
     
     func getLatitude() -> Double {
@@ -47,14 +47,14 @@ class yelpRequests {
                     for r in (res!.businesses)!{
                         //print(r.name)
                         if alt{
-                            if r.name == exception{
+                            if r.name! == exception{
                                 continue
                             }else{
                                 self.busis.append(r) // adds the business to the list of businesses
                             }
-                        }
+                        }else{
                         self.busis.append(r) // adds the business to the list of businesses
-                        
+                        }
                     }
                 }
             }
