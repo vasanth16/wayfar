@@ -30,6 +30,7 @@ struct InterestsView: View {
                 
             }
             
+            
             Button(action: {
                 // On button tap
                 let newY = yelpRequests()
