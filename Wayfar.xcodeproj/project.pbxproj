@@ -17,6 +17,7 @@
 		B72AC593237B83E30062EBF5 /* YelpRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72AC592237B83E30062EBF5 /* YelpRequests.swift */; };
 		B73D2C2026211A6C000B0D08 /* Liquid in Frameworks */ = {isa = PBXBuildFile; productRef = B73D2C1F26211A6C000B0D08 /* Liquid */; };
 		B7401B182381FDBD009A92D2 /* ItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7401B172381FDBC009A92D2 /* ItineraryView.swift */; };
+		B7404B5E262933CD00009CB0 /* SwiftUIKitView in Frameworks */ = {isa = PBXBuildFile; productRef = B7404B5D262933CD00009CB0 /* SwiftUIKitView */; };
 		B746DE3525EB0919007D020E /* TravelCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = B746DE3425EB0919007D020E /* TravelCalc.swift */; };
 		B746DE3925EE0024007D020E /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = B746DE3825EE0024007D020E /* URLImage */; };
 		B7FADEB8237A7F0D00C65540 /* InterestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FADEB7237A7F0D00C65540 /* InterestsView.swift */; };
@@ -49,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7404B5E262933CD00009CB0 /* SwiftUIKitView in Frameworks */,
 				B746DE3925EE0024007D020E /* URLImage in Frameworks */,
 				BD790DA02A62C1D7DFF30CD7 /* Pods_Wayfar.framework in Frameworks */,
 				B73D2C2026211A6C000B0D08 /* Liquid in Frameworks */,
@@ -142,6 +144,7 @@
 			packageProductDependencies = (
 				B746DE3825EE0024007D020E /* URLImage */,
 				B73D2C1F26211A6C000B0D08 /* Liquid */,
+				B7404B5D262933CD00009CB0 /* SwiftUIKitView */,
 			);
 			productName = Wayfar;
 			productReference = B70C5FE12376477C005FC420 /* Wayfar.app */;
@@ -174,6 +177,7 @@
 			packageReferences = (
 				B746DE3725EE0024007D020E /* XCRemoteSwiftPackageReference "url-image" */,
 				B73D2C1E26211A6C000B0D08 /* XCRemoteSwiftPackageReference "liquid" */,
+				B7404B5C262933CD00009CB0 /* XCRemoteSwiftPackageReference "SwiftUIKitView" */,
 			);
 			productRefGroup = B70C5FE22376477C005FC420 /* Products */;
 			projectDirPath = "";
@@ -462,6 +466,14 @@
 				minimumVersion = 0.0.1;
 			};
 		};
+		B7404B5C262933CD00009CB0 /* XCRemoteSwiftPackageReference "SwiftUIKitView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AvdLee/SwiftUIKitView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		B746DE3725EE0024007D020E /* XCRemoteSwiftPackageReference "url-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
@@ -477,6 +489,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B73D2C1E26211A6C000B0D08 /* XCRemoteSwiftPackageReference "liquid" */;
 			productName = Liquid;
+		};
+		B7404B5D262933CD00009CB0 /* SwiftUIKitView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B7404B5C262933CD00009CB0 /* XCRemoteSwiftPackageReference "SwiftUIKitView" */;
+			productName = SwiftUIKitView;
 		};
 		B746DE3825EE0024007D020E /* URLImage */ = {
 			isa = XCSwiftPackageProductDependency;

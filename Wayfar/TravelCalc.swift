@@ -39,7 +39,7 @@ class TravelCalc{
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()
         
-        var params : [[String:String]] = []
+        var params : [[String:String]] = [["address":"Current Location","lat":String(self.getLatitude()), "lng": String(self.getLongitude())]]
         for (key,value) in coords{
             let insert = ["address":key,"lat": String(value[0]), "lng": String(value[1])]
             params.append(insert)
@@ -81,7 +81,7 @@ class TravelCalc{
         }
         getRoute(coords: coords)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0){ [self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){ [self] in
             print(self.optimalRoute)
             parseResponse(places: places)}
         print(self.optimalList)
@@ -92,20 +92,21 @@ class TravelCalc{
     func parseResponse (places: [String:CDYelpBusiness]){
         let route = self.optimalRoute["route"] as! Dictionary<String, Dictionary<String, Any>>
         let count = self.optimalRoute["count"] as! Int
-        for i in 0...count-1{
+        for i in 1...count-1{
             let curr = route[String(i)]
             let name = curr!["name"]
             self.optimalList.append(places[name as! String]!)
         }
     }
     
-    func calcTravel(places: [String:[Double]], stringPicked: [String]) {
+    func calcTravel(placeLat:Double, placeLong: Double) -> String{
         
         let request = MKDirections.Request()
         let userLat = self.getLatitude()
         let userLong = self.getLongitude()
-        let lat = places[stringPicked[0]]![0]
-        let long = places[stringPicked[0]]![1]
+        let lat = placeLat
+        let long = placeLong
+        var time: String = ""
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
         request.source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude:userLat , longitude:userLong ), addressDictionary: nil))
         
@@ -118,20 +119,23 @@ class TravelCalc{
         print(long)
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long), addressDictionary: nil))
         //request.requestsAlternateRoutes = true // if you want multiple possible routes
-        request.transportType = .automobile  // will be good for cars
+            request.transportType = .walking  // will be good for cars
         
         let directions = MKDirections(request: request)
         directions.calculate{ response, error in
             guard let unwrappedResponse = response else { return }
-
-            for route in unwrappedResponse.routes {
-                print(route.expectedTravelTime/60, "Minutes")
-            }}
+            time = String(unwrappedResponse.routes[0].expectedTravelTime/60)
+            print(time)
+//            for route in unwrappedResponse.routes {
+//                print(route.expectedTravelTime/60, "Minutes")
+//            }}
         }
+        
     }
+        return time
 }
 
 
 
-
+}
 

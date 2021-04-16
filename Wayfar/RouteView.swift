@@ -10,21 +10,20 @@ import SwiftUI
 import CDYelpFusionKit
 import URLImage
 
-var AltsPicked: [String:CDYelpBusiness] = [:] // for selected places
-var AltsStringPicked: [String] = []
 var altRoute: [String:CDYelpBusiness] = [:]
-
 
 struct RouteView: View {
     var route: [CDYelpBusiness] = []
     var body: some View {
+        Text("From your current location, first head to...")
         List{
             ForEach(route, id: \.id){ r in
-                    RoutePlaceView(current: r)
-//                    NavigationLink(r.name!, destination: RouteDetailsView(current: r))
-                
+                RoutePlaceView(current: r)
+                Text("Then head to...").bold().underline()
             }
+            
         }.navigationBarTitle("Your Route")
+        
 }
 }
 
@@ -159,35 +158,10 @@ struct AlternativesDetailsView: View{
                     route = altCalc.optimalList
                     next = true
                 }
-
+            })
         }
-//            if AltsStringPicked.contains(current.name!){
-//                let index = stringPicked.firstIndex(of: current.name!)
-//                AltsStringPicked.remove(at: index!)
-//                AltsPicked.removeValue(forKey: current.name!)
-//            }else{
-//                AltsPicked[current.name!] = current
-//                AltsStringPicked.append(current.name!)
-//            }
-            )}
     }
 }
-
-//func getAlts (business: CDYelpBusiness) -> [CDYelpBusiness]{
-//
-//    var returnArry: [CDYelpBusiness] = []
-//
-//
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
-//        returnArry = yelp.busis
-//        print(returnArry)
-//        print("bye")
-//    }
-//    print("Hi")
-//    //Thread.sleep(forTimeInterval: 3)
-//    //print(yelp.busis)
-//    return returnArry
-//}
 
 
 struct RouteView_Previews: PreviewProvider {
