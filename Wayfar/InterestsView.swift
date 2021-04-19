@@ -14,6 +14,8 @@ struct InterestsView: View {
     @State var selections: [String] = [] // where user selections will be storedd
     @State var show = false // whether to show the next view or not
     @State var yrequests = yelpRequests() // requests object
+    var prices = ["$","$$","$$$"]
+    @State var PriceSelections: [String] = []
     var body: some View{
         VStack {
             NavigationView{
@@ -29,13 +31,23 @@ struct InterestsView: View {
             }
                 
             }
-            
+            Text("Please Select your Price Tiers")
+                List(prices, id: \.self){ price in
+                    MultipleSelectionRow(title: price, isSelected: self.PriceSelections.contains(price)){
+                        if self.PriceSelections.contains(price) {
+                            self.PriceSelections.removeAll(where: { $0 == price })
+                        }
+                        else {
+                            self.PriceSelections.append(price)
+                    }
+                }
+                }
             
             Button(action: {
                 // On button tap
                 let newY = yelpRequests()
                 for i in self.selections{
-                    newY.getBusiness(interests: [i], amount: 3)
+                    newY.getBusiness(interests: [i], amount: 3,prices: PriceSelections)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){print(newY.busis)}
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
@@ -78,4 +90,5 @@ struct InterestsView_Previews: PreviewProvider {
         
     }
 }
+
 

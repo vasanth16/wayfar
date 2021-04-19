@@ -72,7 +72,7 @@ struct RouteDetailsView: View{
                 Button(action:{
                     //self.alts = getAlts(business: current)
                     let newY = yelpRequests()
-                    newY.getBusiness(interests: [current.categories![0].alias!], amount: 5, exception: current.name!)
+                    newY.getBusiness(interests: [current.categories![0].alias!], amount: 5, exception: current.name!, prices: ["$","$$","$$$"] )
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
                         yelp = newY
                         print(yelp.busis)

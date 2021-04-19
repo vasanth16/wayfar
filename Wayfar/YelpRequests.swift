@@ -24,12 +24,29 @@ class yelpRequests {
       let coordinate = locationManager.location?.coordinate ?? CLLocationCoordinate2D()
       return coordinate.longitude
     }
-    func getBusiness(interests: [String], amount: Int, exception: String? = nil) -> Void{ // function to get businesses near location based on type
+    func getBusiness(interests: [String], amount: Int, exception: String? = nil, prices:[String]) -> Void{ // function to get businesses near location based on type
         locationManager.requestAlwaysAuthorization() // Gets authorization to use the Devices location
         locationManager.requestWhenInUseAuthorization()
         var alt = false
         if exception != nil{
             alt = true
+        }
+        var priceObjs : [CDYelpPriceTier] = []
+        if (interests[0] == "Restaurants"){
+            for price in prices{
+                if (price == "$"){
+                    priceObjs.append(.oneDollarSign)
+                    continue
+                }
+                if(price == "$$"){
+                    priceObjs.append(.twoDollarSigns)
+                    continue
+                }
+                if (price == "$$$"){
+                    priceObjs.append(.fourDollarSigns)
+                    continue
+                }
+            }
         }
         var categories: [CDYelpCategoryAlias] = [] // List of categories
         for interest in interests{ // creates category objects that are then appended categories array to be sent into the api call
@@ -41,7 +58,7 @@ class yelpRequests {
             // The yelp api call
             print(getLatitude())
             
-            yelpAPIClient.searchBusinesses(byTerm: nil, location: nil, latitude: getLatitude(), longitude: getLongitude(), radius: 10000, categories: categories, locale: nil, limit: amount, offset: nil, sortBy: nil, priceTiers: nil, openNow: true, openAt: nil, attributes: nil) { (response) in
+            yelpAPIClient.searchBusinesses(byTerm: nil, location: nil, latitude: getLatitude(), longitude: getLongitude(), radius: 10000, categories: categories, locale: nil, limit: amount, offset: nil, sortBy: nil, priceTiers: priceObjs, openNow: true, openAt: nil, attributes: nil) { (response) in
                 let res = response // response from API
                 if ((res!.businesses) != nil){
                     for r in (res!.businesses)!{
