@@ -31,7 +31,7 @@ struct ItineraryView: View {
         }.navigationBarTitle("Places").navigationViewStyle(StackNavigationViewStyle())
         VStack {
             if next{
-                NavigationLink("Next",destination: RouteView(route: route))
+                NavigationLink("Next",destination: RouteView(route: route)).foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
             }else{
                 Button(action:{
                     calcTravel()
@@ -41,7 +41,7 @@ struct ItineraryView: View {
                     }
                 }){
                     Text("Calculate My Route")
-                }
+                }.foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
             }
             
         }
@@ -116,7 +116,7 @@ struct detailsView: View {
             Text(current.name ?? "Name").bold().frame(maxWidth: .infinity, alignment: .center)
             Text(current.phone ?? "Phone")
             Text(String(current.rating!) + " Stars")
-            Text(String(getWalkingTime())+" Minutes by walk")
+            //Text(String(getWalkingTime())+" Minutes by walk")
             URLImage(url: current.imageUrl!) { image in
                 image
                     .resizable()
@@ -143,7 +143,7 @@ struct detailsView: View {
                 
             }){
                 Text("Select")
-            }
+            }.foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
             
         }
         

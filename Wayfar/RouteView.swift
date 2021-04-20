@@ -32,15 +32,15 @@ struct RoutePlaceView: View{
     var body: some View{
         ZStack{
             Liquid()
-                .frame(width: 180, height: 180, alignment: .leading)
+                .frame(width: 340, height: 180, alignment: .center)
                 .foregroundColor(.blue)
                 .opacity(0.5)
             Liquid()
-                .frame(width: 140, height: 140, alignment: .leading)
+                .frame(width: 320, height: 140, alignment: .center)
                 .foregroundColor(.blue)
                 .opacity(0.3)
             Liquid(samples: 5)
-                .frame(width: 100, height: 100, alignment: .leading)
+                .frame(width: 300, height: 100, alignment: .center)
                 .foregroundColor(.blue)
             Text(current.name ?? "Name").bold().frame(maxWidth: .infinity, alignment: .center).colorInvert()
             //Text(current.phone ?? "Phone")
@@ -67,7 +67,7 @@ struct RouteDetailsView: View{
             //Text(String(format: "%f", current.location! as! CVarArg))
             
             if next{
-                NavigationLink("Next", destination: AlternativesView(altOf: current, alternatives: yelp.busis))
+                NavigationLink("Next", destination: AlternativesView(altOf: current, alternatives: yelp.busis)).foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
             }else{
                 Button(action:{
                     //self.alts = getAlts(business: current)
@@ -82,7 +82,7 @@ struct RouteDetailsView: View{
                     
                 }){
                     Text("Get Alternatives!")
-                }
+                }.foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
                 
             }
         }
@@ -122,7 +122,8 @@ struct AlternativesPlaceView: View{
     var current: CDYelpBusiness
     var altOf: CDYelpBusiness
     var body: some View{
-        Text(current.name ?? "Name").bold().frame(maxWidth: .infinity, alignment: .center)
+        Text(current.name ?? "Name").bold()
+        Text(String(current.rating!) + " Stars")
         //Text(current.phone ?? "Phone")
         NavigationLink(destination: AlternativesDetailsView(current: current, altOf: altOf)){}
     }
@@ -143,7 +144,7 @@ struct AlternativesDetailsView: View{
                 .aspectRatio(contentMode: .fit)
         }
         if next{
-            NavigationLink("New Route", destination: RouteView(route: route))
+            NavigationLink("New Route", destination: RouteView(route: route)).foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
         }else{
             Button("Select", action:{
                 print("Hi")
@@ -158,7 +159,7 @@ struct AlternativesDetailsView: View{
                     route = altCalc.optimalList
                     next = true
                 }
-            })
+            }).foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
         }
     }
 }

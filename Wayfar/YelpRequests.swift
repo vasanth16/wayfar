@@ -58,7 +58,7 @@ class yelpRequests {
             // The yelp api call
             print(getLatitude())
             
-            yelpAPIClient.searchBusinesses(byTerm: nil, location: nil, latitude: getLatitude(), longitude: getLongitude(), radius: 10000, categories: categories, locale: nil, limit: amount, offset: nil, sortBy: nil, priceTiers: priceObjs, openNow: true, openAt: nil, attributes: nil) { (response) in
+            yelpAPIClient.searchBusinesses(byTerm: nil, location: nil, latitude: 29.956748, longitude: -90.065540, radius: 10000, categories: categories, locale: nil, limit: amount, offset: nil, sortBy: nil, priceTiers: priceObjs, openNow: false, openAt: nil, attributes: nil) { (response) in
                 let res = response // response from API
                 if ((res!.businesses) != nil){
                     for r in (res!.businesses)!{

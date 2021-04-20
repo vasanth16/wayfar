@@ -27,7 +27,7 @@ struct InterestsView: View {
                         else {
                             self.selections.append(interest)
                         }
-                }.navigationBarTitle(Text("Interests")).foregroundColor(.red)
+                    }.navigationBarTitle(Text("Interests")).foregroundColor(.red)
             }
                 
             }
@@ -55,9 +55,9 @@ struct InterestsView: View {
                     self.show.toggle() // toggles show to trigger NavigationLink
                 }
                 
-            }) {
+            }){
                 Text("Next")
-            }
+            }.foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
             NavigationLink(destination: ItineraryView(selections: yrequests.busis), isActive: self.$show){
                 // links to ItineraryView, sends in businesses recieved from yelp request
             }

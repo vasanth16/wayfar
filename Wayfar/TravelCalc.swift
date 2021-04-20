@@ -39,7 +39,7 @@ class TravelCalc{
         let loginData = loginString.data(using: String.Encoding.utf8)!
         let base64LoginString = loginData.base64EncodedString()
         
-        var params : [[String:String]] = [["address":"Current Location","lat":String(self.getLatitude()), "lng": String(self.getLongitude())]]
+        var params : [[String:String]] = [["address":"Current Location","lat":String(29.956748), "lng": String(-90.065540)]]
         for (key,value) in coords{
             let insert = ["address":key,"lat": String(value[0]), "lng": String(value[1])]
             params.append(insert)
