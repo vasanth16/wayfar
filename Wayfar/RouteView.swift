@@ -16,6 +16,7 @@ var altRoute: [String:CDYelpBusiness] = [:]
 struct RouteView: View {
     var route: [CDYelpBusiness] = []
     var body: some View {
+        MapViewRoute(route: route)
         Text("From your current location, first head to...")
         List{
             ForEach(route, id: \.id){ r in
@@ -26,6 +27,29 @@ struct RouteView: View {
         }.navigationBarTitle("Your Route")
         
 }
+}
+
+struct MapViewRoute:UIViewRepresentable{
+    var route: [CDYelpBusiness]
+    func makeUIView(context: UIViewRepresentableContext<MapViewRoute>) -> MKMapView {
+        let mapView = MKMapView()
+        let center = CLLocationCoordinate2D(latitude: route[0].coordinates!.latitude!, longitude:route[0].coordinates!.longitude!)
+        for place in route{
+            let annotation = MKPointAnnotation()
+            let coor = CLLocationCoordinate2D(latitude: place.coordinates!.latitude!, longitude:place.coordinates!.longitude!)
+            annotation.coordinate = coor
+            annotation.title = place.name!
+            mapView.addAnnotation(annotation)
+        }
+        let region = MKCoordinateRegion( center: center, latitudinalMeters: CLLocationDistance(exactly: 6000)!, longitudinalMeters: CLLocationDistance(exactly: 6000)!)
+        mapView.centerCoordinate = center
+        mapView.setRegion(mapView.regionThatFits(region), animated: true)
+        return mapView
+
+    }
+    func updateUIView(_ view: MKMapView, context: UIViewRepresentableContext<MapViewRoute>) {
+        
+    }
 }
 struct MapView: UIViewRepresentable {
     var current: CDYelpBusiness
