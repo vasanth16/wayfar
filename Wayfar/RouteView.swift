@@ -9,6 +9,7 @@ import Liquid
 import SwiftUI
 import CDYelpFusionKit
 import URLImage
+import MapKit
 
 var altRoute: [String:CDYelpBusiness] = [:]
 
@@ -25,6 +26,25 @@ struct RouteView: View {
         }.navigationBarTitle("Your Route")
         
 }
+}
+struct MapView: UIViewRepresentable {
+    var current: CDYelpBusiness
+    func makeUIView(context: UIViewRepresentableContext<MapView>) -> MKMapView {
+        let mapView = MKMapView()
+        let annotation = MKPointAnnotation()
+        let center = CLLocationCoordinate2D(latitude: current.coordinates!.latitude!, longitude:current.coordinates!.longitude!)
+        annotation.coordinate = center
+        annotation.title = current.name!
+        mapView.addAnnotation(annotation)
+        let region = MKCoordinateRegion( center: center, latitudinalMeters: CLLocationDistance(exactly: 2000)!, longitudinalMeters: CLLocationDistance(exactly: 2000)!)
+        mapView.centerCoordinate = center
+        mapView.setRegion(mapView.regionThatFits(region), animated: true)
+
+        return mapView
+    }
+    func updateUIView(_ view: MKMapView, context: UIViewRepresentableContext<MapView>) {
+        
+    }
 }
 
 struct RoutePlaceView: View{
@@ -65,6 +85,7 @@ struct RouteDetailsView: View{
             Text(current.phone ?? "Phone")
             Text(String(current.rating!) + " Stars")
             //Text(String(format: "%f", current.location! as! CVarArg))
+            MapView(current: current)
             
             if next{
                 NavigationLink("Next", destination: AlternativesView(altOf: current, alternatives: yelp.busis)).foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
@@ -96,13 +117,6 @@ struct AlternativesView: View{
         List(alternatives, id: \.id){ alt in
             AlternativesPlaceView(current: alt, altOf: altOf)
         }.navigationBarTitle(Text("Alternatives"))
-//        if next{
-//
-//        }else{
-//        Button(action:{
-//
-//        })
-//    }
     }
 }
 

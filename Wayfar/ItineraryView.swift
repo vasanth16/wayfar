@@ -11,8 +11,7 @@ import URLImage
 import CoreLocation
 import UberRides
 import SwiftUIKitView
-
-
+import MapKit
 
 
 var picked: [String:CDYelpBusiness] = [:] // for selected places
@@ -104,6 +103,7 @@ struct UberView: View{
 
     }
 }
+
 struct detailsView: View {
     var current: CDYelpBusiness
     @State var getWalking: String
@@ -122,8 +122,8 @@ struct detailsView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
+            MapView(current: current)
             UberView(current: current)
-            //RideRequestButton().swiftUIView(layout: .intrinsic)
             Button(action:{
                 if stringPicked.contains(current.name!){
                     let index = stringPicked.firstIndex(of: current.name!)
@@ -133,27 +133,12 @@ struct detailsView: View {
                     picked[current.name!] = current
                     stringPicked.append(current.name!)
                 }
-//                    if let details = picked[current.name!] {
-//                        if details != []{
-//                            picked[current.name!] = [current.coordinates!.latitude! ,current.coordinates!.longitude!]
-//                    }else{
-//                        picked.removeValue(forKey: current.name!)
-//                    }
-//                }
                 
             }){
                 Text("Select")
             }.foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
-            
         }
-        
     }
-//    let Ridebutton = RideRequestButton()
-//    let builder = RideParametersBuilder()
-//    let dropoffLocation = CLLocation(latitude: (current.coordinates?.latitude)!, longitude: (current.coordinates?.longitude)!)
-//    builder.dropoffLocation = dropoffLocation
-//    builder.dropoffNickname = current.name!
-//    Ridebutton.rideParameters = builder.build()
 }
 
 
