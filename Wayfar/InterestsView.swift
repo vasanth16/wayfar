@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-var interests = ["Parks", "Restaurants", "Theater", "Nightlife","Hiking","Festivals", "Museums", "Shopping", "Amusement Parks", "Beaches"] // some sample interests
+var interests = ["Parks", "Restaurants", "Theater", "Nightlife","Hiking","Festivals", "Museums", "Shopping", "Amusement Parks", "Beaches"] // list of interests
 
 struct InterestsView: View {
     @State var selections: [String] = [] // where user selections will be storedd
     @State var show = false // whether to show the next view or not
     @State var yrequests = yelpRequests() // requests object
-    var prices = ["$","$$","$$$"]
+    var prices = ["$","$$","$$$"] // list of price tiers
     @State var PriceSelections: [String] = []
     var body: some View{
         VStack {
@@ -31,6 +31,7 @@ struct InterestsView: View {
             }
                 
             }
+            // displays the prices tiers from the list above
             Text("Please Select your Price Tiers")
                 List(prices, id: \.self){ price in
                     MultipleSelectionRow(title: price, isSelected: self.PriceSelections.contains(price)){
@@ -45,10 +46,10 @@ struct InterestsView: View {
             
             Button(action: {
                 // On button tap
-                let newY = yelpRequests()
+                let newY = yelpRequests() // creates yelp API object
                 for i in self.selections{
-                    newY.getBusiness(interests: [i], amount: 3,prices: PriceSelections)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){print(newY.busis)}
+                    newY.getBusiness(interests: [i], amount: 3,prices: PriceSelections) // grabs businesses from Yelp API
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){}
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
                     yrequests = newY

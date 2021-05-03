@@ -2,7 +2,7 @@
 //  TravelCalc.swift
 //  Wayfar
 //
-//  Created by Vasanth Rajasekaran on 2/27/21.
+//  Created by Vasanth Rajasekaran
 //  Copyright © 2021 Vasanth. All rights reserved.
 //
 
@@ -16,57 +16,51 @@ class TravelCalc{
     
     let locationManager = CLLocationManager() // location manager to manage user's location
     
-    func getLatitude() -> Double {
+    func getLatitude() -> Double { // get user coordinates
       let coordinate = locationManager.location?.coordinate ?? CLLocationCoordinate2D()
       return coordinate.latitude
     }
     
-    func getLongitude() -> Double {
+    func getLongitude() -> Double { // get user coordinates
       let coordinate = locationManager.location?.coordinate ?? CLLocationCoordinate2D()
       return coordinate.longitude
     }
-    //var optimalRoute : String = ""
-    var optimalRoute : Dictionary <String,Any> = [:]
-    var optimalList : [CDYelpBusiness] = []
+    var optimalRoute : Dictionary <String,Any> = [:] // data recieved from API is stored
+    var optimalList : [CDYelpBusiness] = [] // stores places in right order
     
+    /// method to send API call to optimize route
+    /// - Parameter coords: coordinates of places selected by the user being parsed by the main function
     func getRoute(coords:[String:[Double]]) {
         //reference: https://stackoverflow.com/questions/24321165/make-rest-api-call-in-swift
-        //let coords = coords as Dictionary<String, [Double]>
-        //var jsonn : [String: AnyObject]
-        let username = ""
+        let username = "" // private info for API call
         let password = ""
         let loginString = String(format: "%@:%@", username, password)
         let loginData = loginString.data(using: String.Encoding.utf8)!
-        let base64LoginString = loginData.base64EncodedString()
+        let base64LoginString = loginData.base64EncodedString() // encode authorization to send as a parameter
         
-        var params : [[String:String]] = [["address":"Current Location","lat":String(29.956748), "lng": String(-90.065540)]]
+        var params : [[String:String]] = [["address":"Current Location","lat":String(29.956748), "lng": String(-90.065540)]] // set to new orleans but can be changed to user's location using the functions above
         for (key,value) in coords{
-            let insert = ["address":key,"lat": String(value[0]), "lng": String(value[1])]
+            let insert = ["address":key,"lat": String(value[0]), "lng": String(value[1])] // creates dict from coordinates
             params.append(insert)
         }
-        var request = URLRequest(url: URL(string: "https://api.routexl.com/tour/")!)
+        var request = URLRequest(url: URL(string: "https://api.routexl.com/tour/")!) // API endpoint and method
         request.httpMethod = "POST"
         var string = ""
         do {
-            let data = try JSONSerialization.data(withJSONObject: params, options: [])
+            let data = try JSONSerialization.data(withJSONObject: params, options: []) // turns dict of coordinates into JSON obj to format and then back to string
             string = String(data: data, encoding: String.Encoding.utf8)!
-            //print(string)
             } catch {
-              print("hi")
+              print("Error")
             }
-        string = "locations=" + string
-        print(string)
+        string = "locations=" + string // adds string to beginning of stringify dict to conform to API's parameter format
         request.httpBody = string.data(using: .utf8)
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.addValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.addValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization") // sends in auth info
         let session = URLSession.shared
         let task = session.dataTask(with: request, completionHandler: { data, response, error -> Void in
             print(response!)
-            //let str = String(decoding: data!, as: UTF8.self)
-            //self.optimalRoute = str
             do {
-                print("Hi")
-                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any>
+                let json = try JSONSerialization.jsonObject(with: data!) as! Dictionary<String, Any> // gets response and encodes to JSON
                 self.optimalRoute = json
             } catch {
                 print("error")
@@ -74,21 +68,22 @@ class TravelCalc{
         })
         task.resume()
     }
+    /// main method to control the travel calc process
+    /// - Parameter places: places selected by user
     func main(places: [String:CDYelpBusiness]){
         var coords: [String:[Double]] = [:]
-        for (place,obj) in places{
+        for (place,obj) in places{ // creates dict of coordinates
             coords[place] = [obj.coordinates!.latitude!,obj.coordinates!.longitude!]
         }
-        getRoute(coords: coords)
+        getRoute(coords: coords) // calls method to getRoute
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){ [self] in
-            print(self.optimalRoute)
             parseResponse(places: places)}
-        print(self.optimalList)
-        //return self.optimalList
         
     }
     
+    /// Parse response from API call
+    /// - Parameter places: places selected by the user to reorder based on data recieved from API
     func parseResponse (places: [String:CDYelpBusiness]){
         let route = self.optimalRoute["route"] as! Dictionary<String, Dictionary<String, Any>>
         let count = self.optimalRoute["count"] as! Int
@@ -99,43 +94,6 @@ class TravelCalc{
         }
     }
     
-    func calcTravel(placeLat:Double, placeLong: Double) -> String{
-        
-        let request = MKDirections.Request()
-        let userLat = self.getLatitude()
-        let userLong = self.getLongitude()
-        let lat = placeLat
-        let long = placeLong
-        var time: String = ""
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0){
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude:userLat , longitude:userLong ), addressDictionary: nil))
-        
-        
-        
-        print(self.getLatitude())
-        print(self.getLongitude())
-        print("----")
-        print(lat)
-        print(long)
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: lat, longitude: long), addressDictionary: nil))
-        //request.requestsAlternateRoutes = true // if you want multiple possible routes
-            request.transportType = .walking  // will be good for cars
-        
-        let directions = MKDirections(request: request)
-        directions.calculate{ response, error in
-            guard let unwrappedResponse = response else { return }
-            time = String(unwrappedResponse.routes[0].expectedTravelTime/60)
-            print(time)
-//            for route in unwrappedResponse.routes {
-//                print(route.expectedTravelTime/60, "Minutes")
-//            }}
-        }
-        
-    }
-        return time
-}
-
-
 
 }
 

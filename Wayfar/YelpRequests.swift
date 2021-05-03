@@ -24,7 +24,14 @@ class yelpRequests {
       let coordinate = locationManager.location?.coordinate ?? CLLocationCoordinate2D()
       return coordinate.longitude
     }
-    func getBusiness(interests: [String], amount: Int, exception: String? = nil, prices:[String]) -> Void{ // function to get businesses near location based on type
+    /// function to get businesses near location based on type
+    /// - Parameters:
+    ///   - interests: interests selected by the user
+    ///   - amount: how many places to return
+    ///   - exception: what places should be left out from returned list of places if any
+    ///   - prices: price tier to search
+    /// - Returns: void
+    func getBusiness(interests: [String], amount: Int, exception: String? = nil, prices:[String]) -> Void{
         locationManager.requestAlwaysAuthorization() // Gets authorization to use the Devices location
         locationManager.requestWhenInUseAuthorization()
         var alt = false
@@ -76,7 +83,6 @@ class yelpRequests {
                 }
             }
         }
-        print(self.busis)
     }
     
 }

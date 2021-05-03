@@ -18,7 +18,7 @@ struct StartPageView: View {
                 // Helps with structure of the page
                 ZStack {
                     
-                    Liquid()
+                    Liquid() // creates blue bubbles
                         .frame(width: 240, height: 240, alignment: .center)
                         .foregroundColor(.blue)
                         .opacity(0.3)
@@ -34,27 +34,7 @@ struct StartPageView: View {
                         .foregroundColor(.blue)
                     
                     NavigationLink(destination: InterestsView()){ Text("Wayfare").font(.largeTitle).foregroundColor(.white).frame(alignment: .center)
-                    }}
-                //            ZStack{
-                //                Image("bg") // Background image
-                //                    .resizable()
-                //                    .edgesIgnoringSafeArea(.all)
-                //                    .opacity(0.8)
-                //                Spacer()
-                //                VStack {
-                //                    Text("WayFar") // Title of the App
-                //                        .font(.largeTitle)
-                //                        .padding()
-                //                        .colorInvert()
-                //                    NavigationLink(destination: InterestsView()) {
-                //                        // Creates a button that switchs the current view to the interestsView
-                //                    Text("Get Started")
-                //                        .font(.headline)
-                //                        .padding().border(Color.white, width: 1)
-                //                        .accentColor(.white)
-                //                    }
-                //                }
-                //            }
+                    }} // link to the next view where you can select your interests
             }
         }
         .padding(.leading, 3.0)

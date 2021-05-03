@@ -20,7 +20,7 @@ var route :[CDYelpBusiness] = []
 
 struct ItineraryView: View {
     var selections: [CDYelpBusiness] = [] // Selections are sent in as a list
-    @State var next: Bool = false
+    @State var next: Bool = false // controls whether to show next button
     
     var body: some View {
         Text("Please select three places!")
@@ -47,10 +47,11 @@ struct ItineraryView: View {
     }
 }
 func calcTravel(){
-    let travC = TravelCalc()
+    // method to calculate optimal route between selected objects
+    let travC = TravelCalc() // creates travelCalc obj
     travC.main(places: picked)
-    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){
-        route = travC.optimalList
+    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){ // wait for ensuring API data is returned before proceeding
+        route = travC.optimalList // sets returned
         print(route)
     }
     
@@ -75,21 +76,20 @@ struct PlaceView: View {
             Text(parseBusiness(bus: self.sel)[3] + " Miles away")
             
         }.navigationViewStyle(StackNavigationViewStyle())
-        NavigationLink(destination: detailsView(current: sel, getWalking: "")){
+        NavigationLink(destination: detailsView(current: sel)){
             // links to ItineraryView, sends in businesses recieved from yelp request
         }
         }
 }
 
 
-struct UberView: View{
+struct UberView: View{ // custom view to display Uber button since it is not made for Swift UI
     let current: CDYelpBusiness
     let button = RideRequestButton()
     var body: some View{
         makebutton().swiftUIView(layout: .intrinsic).fixedSize()
     }
-    func makebutton() -> RideRequestButton{
-        print("Uver")
+    func makebutton() -> RideRequestButton{ // function to make Uber with user's location
         let pickupLocation = CLLocation(latitude: TravelCalc().getLatitude(), longitude: TravelCalc().getLongitude())
         let dropoffLocation = CLLocation(latitude: current.coordinates!.latitude!, longitude: current.coordinates!.longitude!)
         let builder = RideParametersBuilder()
@@ -97,7 +97,7 @@ struct UberView: View{
         builder.pickupNickname = "My Location"
         builder.dropoffLocation = dropoffLocation
         builder.dropoffNickname = current.name!
-        builder.productID = "ONd0BXIHXsMRukbg-g1iXO_qOv7tWsqy"
+        builder.productID = "" // custom code given to each Uber account
         button.rideParameters = builder.build()
         return button
 
@@ -106,26 +106,23 @@ struct UberView: View{
 
 struct detailsView: View {
     var current: CDYelpBusiness
-    @State var getWalking: String
-    func getWalkingTime() -> String{
-        getWalking = TravelCalc().calcTravel(placeLat: current.coordinates!.latitude!, placeLong: current.coordinates!.longitude!)
-        return getWalking
-    }
+    
+
     var body: some View{
         VStack(alignment: .center){
             Text(current.name ?? "Name").bold().frame(maxWidth: .infinity, alignment: .center)
             Text(current.phone ?? "Phone")
             Text(String(current.rating!) + " Stars")
-            //Text(String(getWalkingTime())+" Minutes by walk")
             URLImage(url: current.imageUrl!) { image in
+                // grabs image for place from Yelp
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
-            MapView(current: current)
-            UberView(current: current)
+            MapView(current: current) // brings in Map for current place
+            UberView(current: current) // displays Uber button for current place
             Button(action:{
-                if stringPicked.contains(current.name!){
+                if stringPicked.contains(current.name!){ // adds place picked places for routing
                     let index = stringPicked.firstIndex(of: current.name!)
                     stringPicked.remove(at: index!)
                     picked.removeValue(forKey: current.name!)
