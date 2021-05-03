@@ -33,10 +33,9 @@ struct ItineraryView: View {
                 NavigationLink("Next",destination: RouteView(route: route)).foregroundColor(.white).padding().background(Color.accentColor) .cornerRadius(8)
             }else{
                 Button(action:{
-                    calcTravel()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 7.0){
-                        self.next = true
-                        print(route)
+                    calcTravel() // calculates optimal travel on button click
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 7.0){ // wait to ensure API response is recieved
+                        self.next = true // sets next to true to display next button
                     }
                 }){
                     Text("Calculate My Route")
@@ -46,18 +45,19 @@ struct ItineraryView: View {
         }
     }
 }
+
+
+/// method to calculate optimal route between selected objects
 func calcTravel(){
-    // method to calculate optimal route between selected objects
     let travC = TravelCalc() // creates travelCalc obj
     travC.main(places: picked)
     DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){ // wait for ensuring API data is returned before proceeding
         route = travC.optimalList // sets returned
-        print(route)
     }
     
 }
+/// parses business object that is sent in and returns an array with the name and its type
 func parseBusiness(bus: CDYelpBusiness) -> [String] {
-    // parses business object that is sent in and returns an array with the name and its type
     let busName = bus.name
     let busType = bus.categories![0].title!
     let busNum = bus.displayPhone
