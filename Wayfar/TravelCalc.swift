@@ -44,7 +44,7 @@ class TravelCalc{
             params.append(insert)
         }
         var request = URLRequest(url: URL(string: "https://api.routexl.com/tour/")!) // API endpoint and method
-        request.httpMethod = "POST"
+        request.httpMethod = "POST" // sets call as a POST request
         var string = ""
         do {
             let data = try JSONSerialization.data(withJSONObject: params, options: []) // turns dict of coordinates into JSON obj to format and then back to string

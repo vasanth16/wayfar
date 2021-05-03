@@ -15,8 +15,8 @@ import MapKit
 
 
 var picked: [String:CDYelpBusiness] = [:] // for selected places
-var stringPicked: [String] = []
-var route :[CDYelpBusiness] = []
+var stringPicked: [String] = [] // keep track of places picked
+var route :[CDYelpBusiness] = [] // stores result of travel calculation
 
 struct ItineraryView: View {
     var selections: [CDYelpBusiness] = [] // Selections are sent in as a list
@@ -57,6 +57,8 @@ func calcTravel(){
     
 }
 /// parses business object that is sent in and returns an array with the name and its type
+/// - Parameter bus: Yelp business object for the selected place
+/// - Returns: list of details of the business that are parsed by the function
 func parseBusiness(bus: CDYelpBusiness) -> [String] {
     let busName = bus.name
     let busType = bus.categories![0].title!
@@ -106,8 +108,6 @@ struct UberView: View{ // custom view to display Uber button since it is not mad
 
 struct detailsView: View {
     var current: CDYelpBusiness
-    
-
     var body: some View{
         VStack(alignment: .center){
             Text(current.name ?? "Name").bold().frame(maxWidth: .infinity, alignment: .center)
