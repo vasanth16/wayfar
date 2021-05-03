@@ -79,6 +79,7 @@ class TravelCalc{
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5.0){ [self] in
             parseResponse(places: places)}
+        // wait to ensure API response is recieved
         
     }
     
