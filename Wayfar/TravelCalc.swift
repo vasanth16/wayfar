@@ -32,7 +32,7 @@ class TravelCalc{
     /// - Parameter coords: coordinates of places selected by the user being parsed by the main function
     func getRoute(coords:[String:[Double]]) {
         //reference: https://stackoverflow.com/questions/24321165/make-rest-api-call-in-swift
-        let username = "" // private info for API call
+        let username = "" // private info for API call, app will not function with API credentials, please contact me if you require the creditials
         let password = ""
         let loginString = String(format: "%@:%@", username, password)
         let loginData = loginString.data(using: String.Encoding.utf8)!

@@ -11,9 +11,9 @@ import CoreLocation
 import CDYelpFusionKit
 
 class yelpRequests {
-    let id = "" // Yelp Client ID REDACTED
+    let id = "" //Yelp Client ID REDACTED, app will not function with API credentials, please contact me if you require the creditials
     let locationManager = CLLocationManager() // location manager to manage user's location
-    let yelpAPIClient = CDYelpAPIClient(apiKey:"" ) // Yelp API Key REDACTED
+    let yelpAPIClient = CDYelpAPIClient(apiKey:"" ) // Yelp API Key REDACTED, app will not function with API credentials, please contact me if you require the creditials
     var busis: [CDYelpFusionKit.CDYelpBusiness] = [] // Array of businesses to be exported to different views
     
     func getLatitude() -> Double {
